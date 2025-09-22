@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         /* Custom styles for the CV */
         html {
@@ -49,6 +51,12 @@
             font-size: 0.875rem;
             font-weight: bold;
         }
+        /* Business card styles for PDF generation */
+        #business-card-container {
+            position: fixed;
+            left: -9999px; /* Position off-screen */
+            top: 0;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -68,16 +76,22 @@
 
     <div class="flex flex-col md:flex-row">
         <!-- Sidebar -->
-        <aside id="sidebar" class="sidebar w-full md:w-64 bg-blue-700 text-white min-h-screen p-4 shadow-lg fixed md:sticky top-0">
+        <aside id="sidebar" class="sidebar w-full md:w-64 bg-blue-700 text-white min-h-screen p-4 shadow-lg fixed md:sticky top-0 flex flex-col">
             <div class="text-center mb-8">
                 <img src="0000.png" alt="Dr. Mazen Badawy" class="w-24 h-24 rounded-full mx-auto mb-2 border-4 border-blue-500">
                 <h1 id="sidebar-name" class="text-xl font-bold">Dr. Mazen Badawy</h1>
-                <p id="sidebar-title" class="text-sm text-blue-200">TEFL Lecturer</p>
+                <p id="sidebar-title" class="text-sm text-blue-200">English Language Lecturer</p>
             </div>
             
             <nav id="nav-menu" class="space-y-2">
                 <!-- Navigation links will be populated by JavaScript -->
             </nav>
+            
+            <div class="mt-auto">
+                <button id="generate-pdf-btn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center">
+                    <i class="fas fa-id-card mr-2"></i> <span id="pdf-btn-text">Generate Business Card</span>
+                </button>
+            </div>
 
         </aside>
 
@@ -226,6 +240,50 @@
         </main>
     </div>
 
+    <!-- Hidden Business Card for PDF Generation -->
+    <div id="business-card-container">
+        <!-- English Version -->
+        <div id="business-card-en" class="w-[525px] h-[300px] bg-white shadow-lg flex font-sans">
+            <div class="w-2/5 bg-blue-800 text-white p-6 flex flex-col justify-center items-center text-center">
+                <img src="0000.png" alt="Dr. Mazen Badawy" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400">
+                <h2 class="text-2xl font-bold">Dr. Mazen Badawy</h2>
+                <p class="text-blue-200">English Language Lecturer</p>
+            </div>
+            <div class="w-3/5 p-6 flex flex-col justify-center">
+                <div class="mb-4">
+                    <h3 class="font-bold text-blue-900 border-b-2 border-blue-200 pb-1 mb-2">Affiliation</h3>
+                    <p class="text-sm text-gray-700">Higher Institute of Engineering & Technology, Kafrelshiekh & ELMAhala</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-blue-900 border-b-2 border-blue-200 pb-1 mb-2">Contact Details</h3>
+                    <p class="text-sm text-gray-700 flex items-center"><i class="fas fa-phone w-4 mr-2 text-blue-600"></i>+201006426677</p>
+                    <p class="text-sm text-gray-700 flex items-center mt-1"><i class="fas fa-envelope w-4 mr-2 text-blue-600"></i>Mazen19812002@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arabic Version -->
+        <div id="business-card-ar" class="w-[525px] h-[300px] bg-white shadow-lg flex font-sans ar-lang" dir="rtl">
+            <div class="w-3/5 p-6 flex flex-col justify-center text-right">
+                <div class="mb-4">
+                    <h3 class="font-bold text-blue-900 border-b-2 border-blue-200 pb-1 mb-2">الانتماء المهني</h3>
+                    <p class="text-sm text-gray-700">المعهد العالي للهندسة والتكنولوجيا، كفر الشيخ والمحلة</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-blue-900 border-b-2 border-blue-200 pb-1 mb-2">معلومات الاتصال</h3>
+                    <p class="text-sm text-gray-700 flex items-center justify-end mt-1"><i class="fas fa-phone w-4 ml-2 text-blue-600"></i>٠١٠٠٦٤٢٦٦٧٧</p>
+                    <p class="text-sm text-gray-700 flex items-center justify-end"><i class="fas fa-envelope w-4 ml-2 text-blue-600"></i>Mazen19812002@gmail.com</p>
+                </div>
+            </div>
+            <div class="w-2/5 bg-blue-800 text-white p-6 flex flex-col justify-center items-center text-center">
+                <img src="0000.png" alt="د/ مازن بدوي" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400">
+                <h2 class="text-2xl font-bold">د/ مازن بدوي</h2>
+                <p class="text-blue-200">محاضر لغة انجليزية</p>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const sections = document.querySelectorAll('main section');
@@ -234,11 +292,15 @@
             const langArBtn = document.getElementById('lang-ar');
             const sidebarName = document.getElementById('sidebar-name');
             const sidebarTitle = document.getElementById('sidebar-title');
+            const generatePdfBtn = document.getElementById('generate-pdf-btn');
+            const pdfBtnText = document.getElementById('pdf-btn-text');
+            const { jsPDF } = window.jspdf;
 
             const translations = {
                 en: {
                     name: "Dr. Mazen Badawy",
-                    title: "TEFL Lecturer",
+                    title: "English Language Lecturer",
+                    pdfButton: "Generate Business Card",
                     nav: {
                         'personal-info': { text: "Personal Info", icon: "fas fa-user-circle" },
                         'qualifications': { text: "Qualifications", icon: "fas fa-graduation-cap" },
@@ -251,6 +313,7 @@
                 ar: {
                     name: "د/ مازن بدوي",
                     title: "محاضر لغة انجليزية",
+                    pdfButton: "إنشاء بطاقة عمل",
                     nav: {
                         'personal-info': { text: "المعلومات الشخصية", icon: "fas fa-user-circle" },
                         'qualifications': { text: "المؤهلات", icon: "fas fa-graduation-cap" },
@@ -293,12 +356,16 @@
 
                 sidebarName.textContent = translations[lang].name;
                 sidebarTitle.textContent = translations[lang].title;
+                pdfBtnText.textContent = translations[lang].pdfButton;
+
                 if (isAr) {
                     sidebarName.classList.add('ar-lang');
                     sidebarTitle.classList.add('ar-lang');
+                    pdfBtnText.classList.add('ar-lang');
                 } else {
                     sidebarName.classList.remove('ar-lang');
                     sidebarTitle.classList.remove('ar-lang');
+                    pdfBtnText.classList.remove('ar-lang');
                 }
                 updateNav(lang);
             }
@@ -320,8 +387,34 @@
                 });
             }
 
+            function generatePDF() {
+                const currentLang = document.documentElement.lang;
+                const cardElementId = currentLang === 'ar' ? 'business-card-ar' : 'business-card-en';
+                const cardElement = document.getElementById(cardElementId);
+                const originalButtonText = pdfBtnText.textContent;
+                pdfBtnText.textContent = currentLang === 'ar' ? 'جاري الإنشاء...' : 'Generating...';
+                generatePdfBtn.disabled = true;
+
+
+                html2canvas(cardElement, { scale: 3 }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jsPDF({
+                        orientation: 'landscape',
+                        unit: 'px',
+                        format: [525, 300]
+                    });
+                    pdf.addImage(imgData, 'PNG', 0, 0, 525, 300);
+                    pdf.save('Dr-Mazen-Badawy-Business-Card.pdf');
+
+                    // Restore button state
+                    pdfBtnText.textContent = originalButtonText;
+                    generatePdfBtn.disabled = false;
+                });
+            }
+
             langEnBtn.addEventListener('click', () => switchLanguage('en'));
             langArBtn.addEventListener('click', () => switchLanguage('ar'));
+            generatePdfBtn.addEventListener('click', generatePDF);
             window.addEventListener('scroll', updateActiveLink);
 
             // Initial setup
