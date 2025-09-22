@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Mazen Badawy - Curriculum Vitae</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the CV */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb, #90caf9);
+        }
+        .ar-lang {
+            font-family: 'Cairo', sans-serif;
+        }
+        .sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        .main-content {
+            transition: margin-left 0.3s ease-in-out;
+        }
+        .sidebar-link.active {
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #0d47a1;
+            transform: scale(1.05);
+        }
+        .section-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .lang-btn.active {
+            background-color: #1976d2;
+            color: white;
+        }
+        .header {
+            background-color: #0d47a1;
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50">
+        <div class="flex justify-center space-x-2">
+            <button id="lang-en" class="lang-btn py-1 px-3 rounded-lg bg-white/30 backdrop-blur-sm text-sm font-semibold text-blue-900 border border-white/40 hover:bg-white/50 transition-all shadow-md">English</button>
+            <button id="lang-ar" class="lang-btn py-1 px-3 rounded-lg bg-white/30 backdrop-blur-sm text-sm font-semibold text-blue-900 border border-white/40 hover:bg-white/50 transition-all shadow-md">العربية</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        Developed by Dr. Mazen Badawy – Doctorate of English Teaching & Testing
+    </header>
+
+    <div class="flex flex-col md:flex-row">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar w-full md:w-64 bg-blue-700 text-white min-h-screen p-4 shadow-lg fixed md:sticky top-0">
+            <div class="text-center mb-8">
+                <img src="0000.png" alt="Dr. Mazen Badawy" class="w-24 h-24 rounded-full mx-auto mb-2 border-4 border-blue-500">
+                <h1 id="sidebar-name" class="text-xl font-bold">Dr. Mazen Badawy</h1>
+                <p id="sidebar-title" class="text-sm text-blue-200">TEFL Lecturer</p>
+            </div>
+            
+            <nav id="nav-menu" class="space-y-2">
+                <!-- Navigation links will be populated by JavaScript -->
+            </nav>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content w-full p-4 md:p-8">
+            
+            <!-- Personal Information -->
+            <section id="personal-info" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+                <div class="en-text">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-user-circle mr-3"></i>Personal Information</h2>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-map-marker-alt w-5 mr-2 text-blue-600"></i><strong>Address:</strong> 27, El Tahreer St, Kafr El Sheikh, Egypt.</li>
+                        <li><i class="fas fa-flag w-5 mr-2 text-blue-600"></i><strong>Nationality:</strong> Egyptian</li>
+                        <li><i class="fas fa-calendar-alt w-5 mr-2 text-blue-600"></i><strong>Birth Date:</strong> 22 / 8 / 1981</li>
+                        <li><i class="fas fa-venus-mars w-5 mr-2 text-blue-600"></i><strong>Gender:</strong> Male</li>
+                        <li><i class="fas fa-heart w-5 mr-2 text-blue-600"></i><strong>Marital Status:</strong> Married + 2 sons</li>
+                        <li><i class="fas fa-phone w-5 mr-2 text-blue-600"></i><strong>Mobile:</strong> +201006426677</li>
+                        <li><i class="fas fa-envelope w-5 mr-2 text-blue-600"></i><strong>Email:</strong> Mazen19812002@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="ar-text ar-lang">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-user-circle ml-3"></i>المعلومات الشخصية</h2>
+                    <ul class="space-y-2 text-gray-700 text-right">
+                        <li><strong>العنوان:</strong> 27، شارع التحرير، كفر الشيخ، مصر.<i class="fas fa-map-marker-alt w-5 ml-2 text-blue-600"></i></li>
+                        <li><strong>الجنسية:</strong> مصري<i class="fas fa-flag w-5 ml-2 text-blue-600"></i></li>
+                        <li><strong>تاريخ الميلاد:</strong> 22 / 8 / 1981<i class="fas fa-calendar-alt w-5 ml-2 text-blue-600"></i></li>
+                        <li><strong>الجنس:</strong> ذكر<i class="fas fa-venus-mars w-5 ml-2 text-blue-600"></i></li>
+                        <li><strong>الحالة الاجتماعية:</strong> متزوج + 2 أبناء<i class="fas fa-heart w-5 ml-2 text-blue-600"></i></li>
+                        <li><strong>رقم الجوال:</strong> 01006426677<i class="fas fa-phone w-5 ml-2 text-blue-600"></i></li>
+                        <li><strong>البريد الالكتروني:</strong> Mazen19812002@gmail.com<i class="fas fa-envelope w-5 ml-2 text-blue-600"></i></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Qualifications -->
+            <section id="qualifications" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+                 <div class="en-text">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-graduation-cap mr-3"></i>Qualifications</h2>
+                     <div class="space-y-4">
+                        <p><strong>Ph.D. in Curricula & Instruction of English (TEFL), 2018</strong> - Kafrelshiekh University</p>
+                        <p><strong>Master in Curricula & Instruction of English (TEFL), 2010</strong> - Kafrelshiekh University</p>
+                        <p><strong>Diploma in Curricula & Instruction of English (TEFL), 2005</strong> - Kafrelshiekh University</p>
+                        <p><strong>Diploma in Curricula Developing & Planning, 2004</strong> - Kafrelshiekh University</p>
+                        <p><strong>Bachelor of Arts and Education (English Dept.), 2002</strong> - Kafrelshiekh University</p>
+                    </div>
+                </div>
+                <div class="ar-text ar-lang text-right">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-graduation-cap ml-3"></i>المؤهلات</h2>
+                     <div class="space-y-4">
+                        <p><strong>دكتوراه في مناهج وتدريس اللغة الإنجليزية (TEFL), 2018</strong> - جامعة كفر الشيخ</p>
+                        <p><strong>ماجستير في مناهج وتدريس اللغة الإنجليزية (TEFL), 2010</strong> - جامعة كفر الشيخ</p>
+                        <p><strong>دبلوم في مناهج وتدريس اللغة الإنجليزية (TEFL), 2005</strong> - جامعة كفر الشيخ</p>
+                        <p><strong>دبلوم في تطوير وتخطيط المناهج, 2004</strong> - جامعة كفر الشيخ</p>
+                        <p><strong>ليسانس الآداب والتربية (قسم اللغة الإنجليزية), 2002</strong> - جامعة كفر الشيخ</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section id="experience" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+                 <div class="en-text">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-briefcase mr-3"></i>Experience</h2>
+                     <div class="space-y-4">
+                        <p><strong>English Language Lecturer</strong> at Higher Institute of Engineering and Technology (H.I.E.T) in Kafrelshiekh (Jan, 2018– till now)</p>
+                        <p><strong>English Language Lecturer</strong> at Higher Institute of Engineering and Technology (H.I.E.T) in ELMAhala (Sep, 2022– till now)</p>
+                        <p><strong>English Language Teacher</strong> at Educational directorate in Kafrelshiekh (Jan, 2014– till now)</p>
+                        <p><strong>English Language Lecturer</strong> at College of Arts, University of Hail, KSA (Sept, 2011 - Jan, 2014)</p>
+                    </div>
+                </div>
+                <div class="ar-text ar-lang text-right">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-briefcase ml-3"></i>الخبرات المهنية</h2>
+                     <div class="space-y-4">
+                        <p><strong>مدرس لغة انجليزية</strong> في المعهد العالي للهندسة والتكنولوجيا (H.I.E.T) في كفر الشيخ (يناير 2018 حتى الآن)</p>
+                        <p><strong>مدرس لغة انجليزية</strong> في المعهد العالي للهندسة والتكنولوجيا (H.I.E.T) بالمحلة (سبتمبر 2022 – حتى الآن)</p>
+                        <p><strong>مدرس لغة انجليزية</strong> في مديرية التربية والتعليم في كفر الشيخ (يناير 2014 حتى الآن)</p>
+                        <p><strong>محاضر لغة انجليزية</strong> في كلية الآداب, جامعة حائل, المملكة العربية السعودية (سبتمبر, 2011 - يناير, 2014)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications -->
+            <section id="publications" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+                <div class="en-text">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-book-open mr-3"></i>Publications</h2>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Badawy, M., & El-Banna, N. (2024). Evaluation Practices Incorporated in 2nd Year Primary English Teacher’s Guide: A Content Analysis.</li>
+                        <li>Badawy, M., & El-Banna, N. (2023). English Language Skills for Engineering Students from the Perspective of the Stakeholders Needs Analysis Study.</li>
+                        <li>Badawy, M., El-Banna, A. & Naeem, M. (2018). The Effect of Using an Interactive Digital Storytelling Environment on Developing Critical Reading Skills.</li>
+                    </ul>
+                </div>
+                 <div class="ar-text ar-lang text-right">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-book-open ml-3"></i>الأبحاث المنشورة</h2>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Badawy, M., & El-Banna, N. (2024). Evaluation Practices Incorporated in 2nd Year Primary English Teacher’s Guide: A Content Analysis.  Journal of Faculty of Education Kafrelshiekh University . 4(1).</li>
+                        <li>Badawy, M., & El-Banna, N. (2023). English Language Skills for Engineering Students from the Perspective of the Stakeholders Needs Analysis Study.  Journal of Faculty of Education Kafrelshiekh University . 4(1).</li>
+                        <li>Badawy, M., El-Banna, A. & Naeem, M. (2018). The Effect of Using an Interactive Digital Storytelling Environment on Developing Critical Reading Skills for Third-Year Preparatory Students.  Journal of Faculty of Education Kafrelshiekh University . 4(1).</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Memberships -->
+            <section id="memberships" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+                <div class="en-text">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-users mr-3"></i>Memberships</h2>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">NileTESOL</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">Microsoft Educational Community</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">International Literacy Association (ILA)</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">English Language Teachers Contacts Scheme (ELTECS)</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">Association for Middle Level Education (AMLE)</span>
+                    </div>
+                </div>
+                <div class="ar-text ar-lang text-right">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-users ml-3"></i>العضويات</h2>
+                    <div class="flex flex-wrap gap-4 justify-end">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">NileTESOL</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">Microsoft Educational Community</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">International Literacy Association (ILA)</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">English Language Teachers Contacts Scheme (ELTECS)</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Skills -->
+             <section id="skills" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+                <div class="en-text">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-laptop-code mr-3"></i>Computer Skills</h2>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Microsoft Office Suite</li>
+                        <li>Authoring Tools (Captivate, Articulate, iSpring)</li>
+                        <li>Programming: Python (Beginner), Visual Studio.Net</li>
+                        <li>Statistical Software: SPSS</li>
+                    </ul>
+                </div>
+                <div class="ar-text ar-lang text-right">
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-laptop-code ml-3"></i>مهارات الحاسوب</h2>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>مايكروسوفت أوفيس</li>
+                        <li>أدوات التأليف (تصميم المواد التعليمية للتعلم الإلكتروني)</li>
+                        <li>برمجة: بايثون (مستوى المبتدئين), Studio.Net</li>
+                        <li>البرامج الإحصائية: SPSS</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('main section');
+            const navMenu = document.getElementById('nav-menu');
+            const langEnBtn = document.getElementById('lang-en');
+            const langArBtn = document.getElementById('lang-ar');
+            const sidebarName = document.getElementById('sidebar-name');
+            const sidebarTitle = document.getElementById('sidebar-title');
+
+            const translations = {
+                en: {
+                    name: "Dr. Mazen Badawy",
+                    title: "TEFL Lecturer",
+                    nav: {
+                        'personal-info': { text: "Personal Info", icon: "fas fa-user-circle" },
+                        'qualifications': { text: "Qualifications", icon: "fas fa-graduation-cap" },
+                        'experience': { text: "Experience", icon: "fas fa-briefcase" },
+                        'publications': { text: "Publications", icon: "fas fa-book-open" },
+                        'memberships': { text: "Memberships", icon: "fas fa-users" },
+                        'skills': { text: "Skills", icon: "fas fa-laptop-code" },
+                    }
+                },
+                ar: {
+                    name: "د/ مازن بدوي",
+                    title: "محاضر لغة انجليزية",
+                    nav: {
+                        'personal-info': { text: "المعلومات الشخصية", icon: "fas fa-user-circle" },
+                        'qualifications': { text: "المؤهلات", icon: "fas fa-graduation-cap" },
+                        'experience': { text: "الخبرات", icon: "fas fa-briefcase" },
+                        'publications': { text: "الأبحاث", icon: "fas fa-book-open" },
+                        'memberships': { text: "العضويات", icon: "fas fa-users" },
+                        'skills': { text: "المهارات", icon: "fas fa-laptop-code" },
+                    }
+                }
+            };
+
+            function updateNav(lang) {
+                navMenu.innerHTML = '';
+                const navData = translations[lang].nav;
+                for (const sectionId in navData) {
+                    const link = document.createElement('a');
+                    link.href = `#${sectionId}`;
+                    link.classList.add('sidebar-link', 'block', 'py-2.5', 'px-4', 'rounded-lg', 'hover:bg-white/20', 'transition-all', 'duration-200', 'flex', 'items-center');
+                     if (lang === 'ar') {
+                        link.classList.add('justify-end', 'ar-lang');
+                        link.innerHTML = `<span>${navData[sectionId].text}</span><i class="${navData[sectionId].icon} ml-3"></i>`;
+                    } else {
+                        link.innerHTML = `<i class="${navData[sectionId].icon} mr-3 w-5 text-center"></i><span>${navData[sectionId].text}</span>`;
+                    }
+                    navMenu.appendChild(link);
+                }
+                 updateActiveLink();
+            }
+
+            function switchLanguage(lang) {
+                const isAr = lang === 'ar';
+                document.documentElement.lang = lang;
+                document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+
+                document.querySelectorAll('.en-text').forEach(el => el.style.display = isAr ? 'none' : 'block');
+                document.querySelectorAll('.ar-text').forEach(el => el.style.display = isAr ? 'block' : 'none');
+                
+                langEnBtn.classList.toggle('active', !isAr);
+                langArBtn.classList.toggle('active', isAr);
+
+                sidebarName.textContent = translations[lang].name;
+                sidebarTitle.textContent = translations[lang].title;
+                if (isAr) {
+                    sidebarName.classList.add('ar-lang');
+                    sidebarTitle.classList.add('ar-lang');
+                } else {
+                    sidebarName.classList.remove('ar-lang');
+                    sidebarTitle.classList.remove('ar-lang');
+                }
+                updateNav(lang);
+            }
+
+            function updateActiveLink() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 100) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            langEnBtn.addEventListener('click', () => switchLanguage('en'));
+            langArBtn.addEventListener('click', () => switchLanguage('ar'));
+            window.addEventListener('scroll', updateActiveLink);
+
+            // Initial setup
+            switchLanguage('en');
+        });
+    </script>
+</body>
+</html>
+
