@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Mazen Badawy - Curriculum Vitae</title>
+    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts for typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Libraries for PDF Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
@@ -23,26 +27,31 @@
         .ar-lang {
             font-family: 'Cairo', sans-serif;
         }
+        /* Smooth transitions for sidebar and main content */
         .sidebar {
             transition: transform 0.3s ease-in-out;
         }
         .main-content {
             transition: margin-left 0.3s ease-in-out;
         }
+        /* Style for the active navigation link */
         .sidebar-link.active {
             background-color: rgba(255, 255, 255, 0.4);
             color: #0d47a1;
             transform: scale(1.05);
         }
+        /* Glassmorphism effect for content cards */
         .section-card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        /* Style for the active language button */
         .lang-btn.active {
             background-color: #1976d2;
             color: white;
         }
+        /* Top header bar style */
         .header {
             background-color: #0d47a1;
             color: white;
@@ -51,7 +60,7 @@
             font-size: 0.875rem;
             font-weight: bold;
         }
-        /* Business card styles for PDF generation */
+        /* Hides the business card element used for PDF generation */
         #business-card-container {
             position: fixed;
             left: -9999px; /* Position off-screen */
@@ -61,10 +70,15 @@
 </head>
 <body class="bg-gray-100">
 
-    <!-- Generate PDF Button -->
-    <div class="fixed top-4 left-4 z-50">
-        <button id="generate-pdf-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-lg transition-colors flex items-center justify-center shadow-md text-sm">
+    <!-- Control Buttons -->
+    <div class="fixed top-4 left-4 z-50 flex space-x-2">
+        <!-- Generate PDF Button -->
+        <button id="generate-pdf-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md text-sm">
             <i class="fas fa-id-card mr-2"></i> <span id="pdf-btn-text">Card</span>
+        </button>
+        <!-- Show QR Code Button -->
+        <button id="show-qr-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md text-sm">
+            <i class="fas fa-qrcode mr-2"></i> <span>QR</span>
         </button>
     </div>
 
@@ -76,30 +90,28 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header Bar -->
     <header class="header">
         Developed by Dr. Mazen Badawy – Doctorate of English Teaching & Testing
     </header>
 
     <div class="flex flex-col md:flex-row">
-        <!-- Sidebar -->
+        <!-- Sidebar Navigation -->
         <aside id="sidebar" class="sidebar w-full md:w-64 bg-blue-700 text-white min-h-screen p-4 shadow-lg fixed md:sticky top-0 flex flex-col">
             <div class="text-center mb-8">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAMAAADQmBKKAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBPAA8wAAE8dFw0AAAAAElFTkSuQmCC" alt="Dr. Mazen Badawy" class="w-24 h-24 rounded-full mx-auto mb-2 border-4 border-blue-500">
+                <img src="https://placehold.co/96x96/FFFFFF/0D47A1?text=MB" alt="Dr. Mazen Badawy" class="w-24 h-24 object-cover rounded-full mx-auto mb-2 border-4 border-blue-500">
                 <h1 id="sidebar-name" class="text-xl font-bold">Dr. Mazen Badawy</h1>
                 <p id="sidebar-title" class="text-sm text-blue-200">English Language Lecturer</p>
             </div>
-            
             <nav id="nav-menu" class="space-y-2">
                 <!-- Navigation links will be populated by JavaScript -->
             </nav>
-            
         </aside>
 
-        <!-- Main Content -->
+        <!-- Main Content Area -->
         <main id="main-content" class="main-content w-full p-4 md:p-8">
             
-            <!-- Personal Information -->
+            <!-- Personal Information Section -->
             <section id="personal-info" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                 <div class="en-text">
                     <div class="text-center mb-6">
@@ -122,7 +134,7 @@
                         <h1 class="text-4xl font-bold text-blue-900">د/ مازن بدوي</h1>
                         <p class="text-xl text-blue-700">محاضر لغة انجليزية</p>
                     </div>
-                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-start">المعلومات الشخصية<i class="fas fa-user-circle mr-3"></i></h2>
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-user-circle ml-3"></i>المعلومات الشخصية</h2>
                     <ul class="space-y-2 text-gray-700 text-right">
                         <li><i class="fas fa-map-marker-alt w-5 ml-2 text-blue-600"></i><strong>العنوان:</strong> 27، شارع التحرير، كفر الشيخ، مصر.</li>
                         <li><i class="fas fa-flag w-5 ml-2 text-blue-600"></i><strong>الجنسية:</strong> مصري</li>
@@ -135,7 +147,7 @@
                 </div>
             </section>
 
-            <!-- Qualifications -->
+            <!-- Qualifications Section -->
             <section id="qualifications" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                  <div class="en-text">
                     <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-graduation-cap mr-3"></i>Qualifications</h2>
@@ -148,7 +160,7 @@
                     </div>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-start">المؤهلات<i class="fas fa-graduation-cap mr-3"></i></h2>
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-graduation-cap ml-3"></i>المؤهلات</h2>
                      <div class="space-y-4">
                         <p><strong>دكتوراه في مناهج وتدريس اللغة الإنجليزية (TEFL), 2018</strong> - جامعة كفر الشيخ</p>
                         <p><strong>ماجستير في مناهج وتدريس اللغة الإنجليزية (TEFL), 2010</strong> - جامعة كفر الشيخ</p>
@@ -159,7 +171,7 @@
                 </div>
             </section>
 
-            <!-- Experience -->
+            <!-- Experience Section -->
             <section id="experience" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                  <div class="en-text">
                     <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-briefcase mr-3"></i>Experience</h2>
@@ -171,7 +183,7 @@
                     </div>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-start">الخبرات المهنية<i class="fas fa-briefcase mr-3"></i></h2>
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-briefcase ml-3"></i>الخبرات المهنية</h2>
                      <div class="space-y-4">
                         <p><strong>مدرس لغة انجليزية</strong> في المعهد العالي للهندسة والتكنولوجيا (H.I.E.T) في كفر الشيخ (يناير 2018 حتى الآن)</p>
                         <p><strong>مدرس لغة انجليزية</strong> في المعهد العالي للهندسة والتكنولوجيا (H.I.E.T) بالمحلة (سبتمبر 2022 – حتى الآن)</p>
@@ -181,7 +193,7 @@
                 </div>
             </section>
 
-            <!-- Publications -->
+            <!-- Publications Section -->
             <section id="publications" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                 <div class="en-text">
                     <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-book-open mr-3"></i>Publications</h2>
@@ -192,7 +204,7 @@
                     </ul>
                 </div>
                  <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-start">الأبحاث المنشورة<i class="fas fa-book-open mr-3"></i></h2>
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-book-open ml-3"></i>الأبحاث المنشورة</h2>
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
                         <li>Badawy, M., & El-Banna, N. (2024). Evaluation Practices Incorporated in 2nd Year Primary English Teacher’s Guide: A Content Analysis.  Journal of Faculty of Education Kafrelshiekh University . 4(1).</li>
                         <li>Badawy, M., & El-Banna, N. (2023). English Language Skills for Engineering Students from the Perspective of the Stakeholders Needs Analysis Study.  Journal of Faculty of Education Kafrelshiekh University . 4(1).</li>
@@ -201,7 +213,7 @@
                 </div>
             </section>
             
-            <!-- Memberships -->
+            <!-- Memberships Section -->
             <section id="memberships" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                 <div class="en-text">
                     <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-users mr-3"></i>Memberships</h2>
@@ -214,7 +226,7 @@
                     </div>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-start">العضويات<i class="fas fa-users mr-3"></i></h2>
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-users ml-3"></i>العضويات</h2>
                     <div class="flex flex-wrap gap-4 justify-end">
                         <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">NileTESOL</span>
                         <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-semibold">Microsoft Educational Community</span>
@@ -224,7 +236,7 @@
                 </div>
             </section>
             
-            <!-- Skills -->
+            <!-- Skills Section -->
              <section id="skills" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                 <div class="en-text">
                     <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-laptop-code mr-3"></i>Computer Skills</h2>
@@ -236,7 +248,7 @@
                     </ul>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-start">مهارات الحاسوب<i class="fas fa-laptop-code mr-3"></i></h2>
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-laptop-code ml-3"></i>مهارات الحاسوب</h2>
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
                         <li>مايكروسوفت أوفيس</li>
                         <li>أدوات التأليف (تصميم المواد التعليمية للتعلم الإلكتروني)</li>
@@ -246,7 +258,7 @@
                 </div>
             </section>
 
-            <!-- Training Courses -->
+            <!-- Training Courses Section -->
             <section id="training-courses" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                 <div class="en-text">
                     <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center"><i class="fas fa-chalkboard-teacher mr-3"></i>Training Courses</h2>
@@ -300,7 +312,7 @@
                     </div>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-start">الدورات التدريبية<i class="fas fa-chalkboard-teacher mr-3"></i></h2>
+                    <h2 class="text-3xl font-bold text-blue-800 border-b-4 border-blue-500 pb-2 mb-4 flex items-center justify-end"><i class="fas fa-chalkboard-teacher ml-3"></i>الدورات التدريبية</h2>
                     <div class="space-y-6">
                         <div>
                             <h3 class="text-xl font-semibold text-blue-700 mb-2">سيسكو</h3>
@@ -351,16 +363,15 @@
                     </div>
                 </div>
             </section>
-
         </main>
     </div>
 
-    <!-- Hidden Business Card for PDF Generation -->
+    <!-- Hidden Business Card Templates for PDF Generation -->
     <div id="business-card-container">
         <!-- English Version -->
         <div id="business-card-en" class="w-[525px] h-[300px] bg-white shadow-lg flex font-sans">
             <div class="w-2/5 bg-blue-800 text-white p-6 flex flex-col justify-center items-center text-center">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAMAAADQmBKKAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBPAA8wAAE8dFw0AAAAAElFTkSuQmCC" alt="Dr. Mazen Badawy" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400">
+                <img src="https://placehold.co/80x80/FFFFFF/0D47A1?text=MB" alt="Dr. Mazen Badawy" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400">
                 <h2 class="text-2xl font-bold">Dr. Mazen Badawy</h2>
                 <p class="text-blue-200">English Language Lecturer</p>
             </div>
@@ -375,11 +386,10 @@
                         <p class="text-sm text-gray-700 flex items-center"><i class="fas fa-phone w-4 mr-2 text-blue-600"></i>+201006426677</p>
                         <p class="text-sm text-gray-700 flex items-center mt-1"><i class="fas fa-envelope w-4 mr-2 text-blue-600"></i>Mazen19812002@gmail.com</p>
                     </div>
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAMAAADQmBKKAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBPAA8wAAE8dFw0AAAAAElFTkSuQmCC" alt="QR Code" class="w-20 h-20">
+                    <img src="https://placehold.co/80x80/1E293B/FFFFFF?text=QR" alt="QR Code" class="w-20 h-20">
                 </div>
             </div>
         </div>
-
         <!-- Arabic Version -->
         <div id="business-card-ar" class="w-[525px] h-[300px] bg-white shadow-lg flex font-sans ar-lang" dir="rtl">
             <div class="w-3/5 p-6 flex flex-col justify-center text-right">
@@ -393,20 +403,29 @@
                         <p class="text-sm text-gray-700 flex items-center justify-end mt-1"><i class="fas fa-phone w-4 ml-2 text-blue-600"></i>٠١٠٠٦٤٢٦٦٧٧</p>
                         <p class="text-sm text-gray-700 flex items-center justify-end"><i class="fas fa-envelope w-4 ml-2 text-blue-600"></i>Mazen19812002@gmail.com</p>
                     </div>
-                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAMAAADQmBKKAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBPAA8wAAE8dFw0AAAAAElFTkSuQmCC" alt="QR Code" class="w-20 h-20">
+                     <img src="https://placehold.co/80x80/1E293B/FFFFFF?text=QR" alt="QR Code" class="w-20 h-20">
                 </div>
             </div>
             <div class="w-2/5 bg-blue-800 text-white p-6 flex flex-col justify-center items-center text-center">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAMAAADQmBKKAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBPAA8wAAE8dFw0AAAAAElFTkSuQmCC" alt="د/ مازن بدوي" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400">
+                <img src="https://placehold.co/80x80/FFFFFF/0D47A1?text=MB" alt="د/ مازن بدوي" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400">
                 <h2 class="text-2xl font-bold">د/ مازن بدوي</h2>
                 <p class="text-blue-200">محاضر لغة انجليزية</p>
             </div>
+        </div>
+    </div>
+    
+    <!-- QR Code Modal -->
+    <div id="qr-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden transition-opacity duration-300">
+        <div class="relative bg-white p-4 rounded-lg shadow-xl max-w-sm w-full mx-4">
+            <button id="close-modal-btn" class="absolute -top-3 -right-3 text-white bg-red-500 rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold hover:bg-red-600 transition-colors">&times;</button>
+            <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.src='https://placehold.co/300x300/CCCCCC/FFFFFF?text=QR+Code+Not+Found'">
         </div>
     </div>
 
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Get necessary DOM elements
             const sections = document.querySelectorAll('main section');
             const navMenu = document.getElementById('nav-menu');
             const langEnBtn = document.getElementById('lang-en');
@@ -416,7 +435,14 @@
             const pdfBtnText = document.getElementById('pdf-btn-text');
             const generatePdfBtn = document.getElementById('generate-pdf-btn');
             const { jsPDF } = window.jspdf;
+            
+            // QR Code Modal elements
+            const showQrBtn = document.getElementById('show-qr-btn');
+            const qrModal = document.getElementById('qr-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
 
+
+            // Translations for dynamic content
             const translations = {
                 en: {
                     name: "Dr. Mazen Badawy",
@@ -448,6 +474,7 @@
                 }
             };
 
+            // Function to update the navigation menu based on the selected language
             function updateNav(lang) {
                 const sectionData = translations[lang].sections;
                 navMenu.innerHTML = '';
@@ -456,42 +483,51 @@
                     link.href = `#${id}`;
                     link.classList.add('sidebar-link', 'block', 'py-2', 'px-4', 'rounded-lg', 'hover:bg-blue-600', 'transition-all', 'duration-200', 'flex', 'items-center');
                     link.dataset.sectionId = id;
-                    link.innerHTML = `<i class="${sectionData[id].icon} mr-3"></i> ${sectionData[id].text}`;
+                    
                     if (lang === 'ar') {
                         link.innerHTML = `${sectionData[id].text} <i class="${sectionData[id].icon} ml-3"></i>`;
-                        link.classList.add('text-right', 'justify-start');
+                        link.classList.add('text-right', 'justify-end');
+                    } else {
+                        link.innerHTML = `<i class="${sectionData[id].icon} mr-3"></i> ${sectionData[id].text}`;
                     }
                     navMenu.appendChild(link);
                 });
             }
 
+            // Function to switch the language of the entire page
             function switchLanguage(lang) {
                 document.documentElement.lang = lang;
                 const isAr = lang === 'ar';
 
+                // Toggle visibility of English and Arabic text blocks
                 document.querySelectorAll('.en-text').forEach(el => el.style.display = isAr ? 'none' : 'block');
                 document.querySelectorAll('.ar-text').forEach(el => el.style.display = isAr ? 'block' : 'none');
 
+                // Adjust layout for Right-To-Left (RTL) if Arabic is selected
                 document.body.dir = isAr ? 'rtl' : 'ltr';
                 document.getElementById('sidebar').style.textAlign = isAr ? 'right' : 'left';
                 document.getElementById('main-content').style.marginLeft = isAr ? '0' : '';
                 document.getElementById('main-content').style.marginRight = isAr ? 'auto' : ''; 
-
+                
+                // Update active state of language buttons
                 langEnBtn.classList.toggle('active', !isAr);
                 langArBtn.classList.toggle('active', isAr);
 
+                // Update translatable text content
                 sidebarName.textContent = translations[lang].name;
                 sidebarTitle.textContent = translations[lang].title;
                 pdfBtnText.textContent = translations[lang].cardBtn;
                 updateNav(lang);
-                updateActiveLink(); 
-            }
+                updateActiveLink(); // Re-check active link after nav is rebuilt
+             }
 
+            // Function to highlight the current section in the sidebar on scroll
             function updateActiveLink() {
                let current = '';
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 60) {
+                    // 60px offset for better accuracy with fixed header/elements
+                    if (window.pageYOffset >= sectionTop - 60) {
                         current = section.getAttribute('id');
                     }
                 });
@@ -504,38 +540,70 @@
                 });
             }
 
+            // Function to generate and download the business card as a PDF
             function generatePDF() {
                 const currentLang = document.documentElement.lang;
                 const cardElementId = currentLang === 'ar' ? 'business-card-ar' : 'business-card-en';
                 const cardElement = document.getElementById(cardElementId);
                 const originalButtonText = pdfBtnText.textContent;
+                
+                // Provide user feedback during PDF generation
                 pdfBtnText.textContent = currentLang === 'ar' ? 'جاري الإنشاء...' : 'Generating...';
                 generatePdfBtn.disabled = true;
 
+                // Use html2canvas to render the element to a canvas
                 html2canvas(cardElement, { scale: 3, useCORS: true }).then(canvas => {
                     const imgData = canvas.toDataURL('image/png');
                     const pdf = new jsPDF({
                         orientation: 'landscape',
                         unit: 'px',
-                        format: [525, 300]
+                        format: [525, 300] // Match business card dimensions
                     });
                     pdf.addImage(imgData, 'PNG', 0, 0, 525, 300);
                     pdf.save('Dr-Mazen-Badawy-Business-Card.pdf');
 
+                    // Restore button state after generation
+                    pdfBtnText.textContent = originalButtonText;
+                    generatePdfBtn.disabled = false;
+                }).catch(err => {
+                    console.error("Failed to generate PDF:", err);
+                    // Restore button state on error
                     pdfBtnText.textContent = originalButtonText;
                     generatePdfBtn.disabled = false;
                 });
             }
+            
+            // --- QR Code Modal Logic ---
+            function showQrModal() {
+                qrModal.classList.remove('hidden');
+            }
+            
+            function hideQrModal() {
+                qrModal.classList.add('hidden');
+            }
 
+            // Event Listeners
             langEnBtn.addEventListener('click', () => switchLanguage('en'));
             langArBtn.addEventListener('click', () => switchLanguage('ar'));
             generatePdfBtn.addEventListener('click', generatePDF);
-
             window.addEventListener('scroll', updateActiveLink);
+            
+            // QR Code Modal Event Listeners
+            showQrBtn.addEventListener('click', showQrModal);
+            closeModalBtn.addEventListener('click', hideQrModal);
+            qrModal.addEventListener('click', (event) => {
+                // Close modal if the background is clicked, but not the content inside it
+                if (event.target === qrModal) {
+                    hideQrModal();
+                }
+            });
 
-            switchLanguage('en');
+
+            // Initial setup on page load
+            switchLanguage('en'); // Default to English
             updateActiveLink();
         });
     </script>
 </body>
 </html>
+
