@@ -198,7 +198,7 @@
                 <div class="ar-text ar-lang">
                     <div class="text-center mb-6">
                         <h1 class="text-4xl font-bold heading-style">د/ مازن بدوي</h1>
-                        <p class="text-xl subheading-style">محاضر / دكتور لغة انجليزية</p>
+                        <p class="text-xl subheading-style">محاضر لغة انجليزية</p>
                     </div>
                     <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-user-circle ml-3"></i>المعلومات الشخصية</h2>
                     <ul class="space-y-2 text-body-style text-right">
@@ -668,6 +668,9 @@
             }
 
             async function generateCVPDF() {
+                // Ensure fonts are loaded before starting PDF generation
+                await document.fonts.ready;
+
                 const currentLang = document.documentElement.lang;
                 const cvContent = document.getElementById('main-content');
                 const originalButtonText = cvPdfBtnText.textContent;
@@ -690,7 +693,18 @@
                     const sectionElements = Array.from(cvContent.querySelectorAll('section'));
 
                     for (const section of sectionElements) {
-                        const canvas = await html2canvas(section, { scale: 2, useCORS: true });
+                        const canvas = await html2canvas(section, { 
+                            scale: 2, 
+                            useCORS: true,
+                            onclone: (doc) => {
+                                // For Arabic text, ensure text direction is correct in the clone
+                                if (currentLang === 'ar') {
+                                    doc.querySelectorAll('.ar-lang').forEach(el => {
+                                        el.style.direction = 'rtl';
+                                    });
+                                }
+                            }
+                        });
                         
                         const imgData = canvas.toDataURL('image/png');
                         const imgWidth = canvas.width;
@@ -704,7 +718,7 @@
                         }
 
                         pdf.addImage(imgData, 'PNG', margin, y, contentWidth, pdfImageHeight);
-                        y += pdfImageHeight + 10; 
+                        y += pdfImageHeight + 5; // Add a small gap between sections
                     }
                     
                     pdf.save(pdfFileName);
@@ -739,5 +753,4 @@
     </script>
 </body>
 </html>
-
 
