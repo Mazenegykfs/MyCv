@@ -132,6 +132,10 @@
         <button id="show-qr-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md text-sm">
             <i class="fas fa-qrcode mr-2"></i> <span>QR</span>
         </button>
+        <!-- Export CV Button -->
+        <button id="generate-cv-pdf-btn" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md text-sm">
+            <i class="fas fa-file-pdf mr-2"></i> <span id="cv-pdf-btn-text">Export CV</span>
+        </button>
     </div>
 
     <!-- Language Switcher -->
@@ -508,6 +512,8 @@
             const sidebarTitle = document.getElementById('sidebar-title');
             const pdfBtnText = document.getElementById('pdf-btn-text');
             const generatePdfBtn = document.getElementById('generate-pdf-btn');
+            const cvPdfBtnText = document.getElementById('cv-pdf-btn-text');
+            const generateCvPdfBtn = document.getElementById('generate-cv-pdf-btn');
             const { jsPDF } = window.jspdf;
             const showQrBtn = document.getElementById('show-qr-btn');
             const qrModal = document.getElementById('qr-modal');
@@ -519,7 +525,7 @@
             // --- Translations for dynamic content ---
             const translations = {
                 en: {
-                    name: "Dr. Mazen Badawy", title: "English Language Lecturer", cardBtn: "Card",
+                    name: "Dr. Mazen Badawy", title: "English Language Lecturer", cardBtn: "Card", cvPdfBtn: "Export CV",
                     sections: {
                         'personal-info': { text: "Personal Info", icon: "fas fa-user-circle" },
                         'qualifications': { text: "Qualifications", icon: "fas fa-graduation-cap" },
@@ -531,7 +537,7 @@
                     }
                 },
                 ar: {
-                    name: "د/ مازن بدوي", title: "محاضر لغة انجليزية", cardBtn: "بطاقة",
+                    name: "د/ مازن بدوي", title: "محاضر لغة انجليزية", cardBtn: "بطاقة", cvPdfBtn: "تصدير السيرة الذاتية",
                     sections: {
                         'personal-info': { text: "المعلومات الشخصية", icon: "fas fa-user-circle" },
                         'qualifications': { text: "المؤهلات", icon: "fas fa-graduation-cap" },
@@ -616,6 +622,7 @@
                 sidebarName.textContent = translations[lang].name;
                 sidebarTitle.textContent = translations[lang].title;
                 pdfBtnText.textContent = translations[lang].cardBtn;
+                cvPdfBtnText.textContent = translations[lang].cvPdfBtn;
                 updateNav(lang);
                 updateActiveLink();
             }
@@ -637,7 +644,7 @@
             }
 
             // --- PDF Generation ---
-            function generatePDF() {
+            function generateCardPDF() {
                 const currentLang = document.documentElement.lang;
                 const cardId = currentLang === 'ar' ? 'business-card-ar' : 'business-card-en';
                 const cardElement = document.getElementById(cardId);
@@ -654,24 +661,76 @@
                     pdfBtnText.textContent = originalBtnText;
                     generatePdfBtn.disabled = false;
                 }).catch(err => {
-                    console.error("PDF generation failed:", err);
+                    console.error("Card PDF generation failed:", err);
                     pdfBtnText.textContent = originalBtnText;
                     generatePdfBtn.disabled = false;
                 });
+            }
+
+            async function generateCVPDF() {
+                const currentLang = document.documentElement.lang;
+                const cvContent = document.getElementById('main-content');
+                const originalButtonText = cvPdfBtnText.textContent;
+                const pdfFileName = 'Dr-Mazen-Badawy-CV.pdf';
+                
+                cvPdfBtnText.textContent = currentLang === 'ar' ? 'جاري التصدير...' : 'Exporting...';
+                generateCvPdfBtn.disabled = true;
+
+                const cardSections = cvContent.querySelectorAll('.section-card');
+                cardSections.forEach(s => s.style.boxShadow = 'none');
+
+                try {
+                    const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+                    const pageHeight = pdf.internal.pageSize.getHeight();
+                    const pageWidth = pdf.internal.pageSize.getWidth();
+                    const margin = 15;
+                    const contentWidth = pageWidth - (margin * 2);
+                    let y = margin; 
+
+                    const sectionElements = Array.from(cvContent.querySelectorAll('section'));
+
+                    for (const section of sectionElements) {
+                        const canvas = await html2canvas(section, { scale: 2, useCORS: true });
+                        
+                        const imgData = canvas.toDataURL('image/png');
+                        const imgWidth = canvas.width;
+                        const imgHeight = canvas.height;
+                        
+                        const pdfImageHeight = (imgHeight * contentWidth) / imgWidth;
+
+                        if (y + pdfImageHeight > pageHeight - margin) {
+                            pdf.addPage();
+                            y = margin; 
+                        }
+
+                        pdf.addImage(imgData, 'PNG', margin, y, contentWidth, pdfImageHeight);
+                        y += pdfImageHeight + 10; 
+                    }
+                    
+                    pdf.save(pdfFileName);
+                } catch (err) {
+                    console.error("CV PDF generation failed:", err);
+                } finally {
+                    cardSections.forEach(s => s.style.boxShadow = '');
+                    cvPdfBtnText.textContent = originalButtonText;
+                    generateCvPdfBtn.disabled = false;
+                }
             }
             
             // --- QR Code Modal Logic ---
             function showQrModal() { qrModal.classList.remove('hidden'); }
             function hideQrModal() { qrModal.classList.add('hidden'); }
+            
+            // --- Event Listeners ---
+            langEnBtn.addEventListener('click', () => switchLanguage('en'));
+            langArBtn.addEventListener('click', () => switchLanguage('ar'));
+            generatePdfBtn.addEventListener('click', generateCardPDF);
+            generateCvPdfBtn.addEventListener('click', generateCVPDF);
+            window.addEventListener('scroll', updateActiveLink);
             showQrBtn.addEventListener('click', showQrModal);
             closeModalBtn.addEventListener('click', hideQrModal);
             qrModal.addEventListener('click', (e) => { if (e.target === qrModal) hideQrModal(); });
 
-            // --- Event Listeners ---
-            langEnBtn.addEventListener('click', () => switchLanguage('en'));
-            langArBtn.addEventListener('click', () => switchLanguage('ar'));
-            generatePdfBtn.addEventListener('click', generatePDF);
-            window.addEventListener('scroll', updateActiveLink);
             
             // --- Initial setup ---
             switchLanguage('en');
