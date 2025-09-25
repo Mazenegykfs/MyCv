@@ -694,7 +694,7 @@
 
                     for (const section of sectionElements) {
                         const canvas = await html2canvas(section, { 
-                            scale: 2, 
+                            scale: 4, // Increased scale for larger font
                             useCORS: true,
                             onclone: (doc) => {
                                 // For Arabic text, ensure text direction is correct in the clone
