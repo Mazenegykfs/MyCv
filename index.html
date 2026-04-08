@@ -34,7 +34,7 @@
             --sidebar-active-text: #1565c0;
             --header-bg: #1976d2;
             --header-text: #ffffff;
-            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.9);
             --text-heading: #1e88e5;
             --text-subheading: #42a5f5;
             --text-body: #374151;
@@ -155,15 +155,17 @@
         /* General Web UI Enhancements */
         .section-card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
             border: 3px solid var(--border-color);
             border-radius: 1.5rem;
             position: relative;
+            z-index: 1;
+            transform: translateZ(0);
         }
         
         .section-card::before {
             content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px;
             border: 1px dashed var(--icon-color); border-radius: 1.2rem; pointer-events: none; opacity: 0.6;
+            z-index: -1;
         }
 
         .heading-separator {
@@ -310,7 +312,7 @@
 <body data-theme="default">
 
     <!-- Floating Mini Profile (Visible when Sidebar is Hidden) -->
-    <div id="floating-profile" class="fixed top-3 left-1/2 z-50 flex items-center justify-center bg-white/90 backdrop-blur-lg rounded-full shadow-lg px-5 py-2 border-2 transition-all gap-4 border-style">
+    <div id="floating-profile" class="fixed top-3 left-1/2 z-50 flex items-center justify-center bg-white/95 rounded-full shadow-lg px-5 py-2 border-2 transition-all gap-4 border-style">
         <img src="https://mazenegykfs.github.io/MyCv/00.png" alt="Avatar" class="w-12 h-12 rounded-full border-2 object-cover border-style">
         <div class="flex flex-col">
             <h2 id="floating-name" class="text-sm md:text-base font-bold heading-style leading-none mb-1">Dr. Mazen Badawy</h2>
