@@ -94,7 +94,6 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
             transition: background 0.5s ease;
-            padding-bottom: 40px; /* Room for animated footer */
         }
         
         .ar-lang { 
@@ -206,25 +205,6 @@
             50% { transform: translateY(-3px); }
         }
 
-        /* =========================================================
-           ANIMATED SCROLLING FOOTER 
-           ========================================================= */
-        .animated-footer {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 32px;
-            background: linear-gradient(90deg, #00c6ff, #11998e, #8E2DE2, #00c6ff);
-            background-size: 300% 100%;
-            animation: gradient-scroll 6s linear infinite;
-            color: white; display: flex; align-items: center; justify-content: center;
-            font-size: 0.85rem; font-weight: 600; z-index: 100;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            letter-spacing: 0.05em;
-        }
-
-        @keyframes gradient-scroll {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
 
         /* =========================================================
            PRINTED PDF CV ENHANCEMENTS (Applied to Hidden Clone ONLY) 
@@ -288,11 +268,6 @@
     </style>
 </head>
 <body data-theme="default">
-
-    <!-- Animated Footer -->
-    <footer class="animated-footer">
-        All rights are reserved to Dr. Mazen Badawy – Doctor of English Teaching & Testing
-    </footer>
 
     <!-- Control Buttons -->
     <div class="fixed top-4 left-4 z-50 flex space-x-3">
