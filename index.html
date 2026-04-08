@@ -204,18 +204,18 @@
         }
         
         .pdf-export-mode .main-content {
-            padding: 20px !important;
+            padding: 10px !important;
         }
 
         .pdf-export-mode .section-card {
             width: 1000px !important; /* Forces perfect ultra-wide layout for PDF even on mobile */
             max-width: 1000px !important;
             background: #ffffff !important;
-            border: 4px solid var(--sidebar-bg) !important; /* Thick formal border */
+            border: 3px solid var(--sidebar-bg) !important; /* Thick formal border */
             border-radius: 0 !important; /* Square academic corners */
-            box-shadow: 12px 12px 0px var(--border-color) !important; /* Decorative hard shadow */
-            padding: 3.5rem !important;
-            margin-bottom: 3rem !important;
+            box-shadow: 8px 8px 0px var(--border-color) !important; /* Decorative hard shadow */
+            padding: 2rem !important; /* Compacted padding */
+            margin-bottom: 1.5rem !important; /* Compacted margins between sections */
             position: relative;
         }
 
@@ -223,8 +223,8 @@
         .pdf-export-mode .section-card::before {
             content: '';
             position: absolute;
-            top: 8px; left: 8px; right: 8px; bottom: 8px;
-            border: 2px dashed var(--sidebar-bg) !important;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1.5px dashed var(--sidebar-bg) !important;
             border-radius: 0 !important;
             pointer-events: none;
             opacity: 1;
@@ -232,58 +232,68 @@
 
         /* Large Bold Headings */
         .pdf-export-mode .heading-style {
-            font-size: 2.8rem !important;
+            font-size: 2.2rem !important;
             font-weight: 900 !important;
             color: var(--sidebar-bg) !important;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.02em;
+            line-height: 1.3 !important;
         }
         
         .pdf-export-mode h1.heading-style {
-            font-size: 4rem !important;
-            border-bottom: 5px solid var(--sidebar-bg);
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
+            font-size: 3rem !important;
+            border-bottom: 4px solid var(--sidebar-bg);
+            padding-bottom: 0.4em !important; /* Fixes overlaps with letters like y and ي */
+            margin-bottom: 0.5rem;
             display: inline-block;
         }
 
         .pdf-export-mode .subheading-style {
-            font-size: 1.8rem !important;
+            font-size: 1.5rem !important;
             font-weight: 800 !important;
             color: var(--text-heading) !important;
+            margin-top: 0 !important;
         }
 
         /* Large Bold Body Text */
         .pdf-export-mode .text-body-style {
-            font-size: 1.35rem !important;
+            font-size: 1.2rem !important;
             font-weight: 700 !important;
             color: #000000 !important;
-            line-height: 2 !important;
+            line-height: 1.5 !important; /* Compacted line height */
         }
 
         /* Emphasized Separator for PDF */
         .pdf-export-mode .heading-separator {
-            border-top: 6px solid var(--sidebar-bg) !important;
-            border-bottom: 2px solid var(--sidebar-bg) !important;
-            height: 14px !important;
-            margin-top: 1rem !important;
-            margin-bottom: 2rem !important;
+            border-top: 4px solid var(--sidebar-bg) !important;
+            border-bottom: 1px solid var(--sidebar-bg) !important;
+            height: 8px !important;
+            margin-top: 0.5rem !important;
+            margin-bottom: 1rem !important;
             opacity: 1;
         }
 
         .pdf-export-mode .icon-style {
             color: var(--sidebar-bg) !important;
-            font-size: 1.8rem !important;
+            font-size: 1.5rem !important;
         }
 
         .pdf-export-mode .tag-bg-style {
             background-color: var(--bg-gradient-start) !important;
             color: var(--sidebar-bg) !important;
             border: 2px solid var(--sidebar-bg) !important;
-            font-size: 1.25rem !important;
+            font-size: 1.1rem !important;
             font-weight: 800 !important;
-            padding: 0.5rem 1.5rem !important;
+            padding: 0.25rem 1rem !important;
             border-radius: 0 !important; /* Square tags to match border */
+        }
+
+        /* Override Tailwind spacing for maximum compactness in PDF */
+        .pdf-export-mode .space-y-2 > :not([hidden]) ~ :not([hidden]),
+        .pdf-export-mode .space-y-3 > :not([hidden]) ~ :not([hidden]),
+        .pdf-export-mode .space-y-4 > :not([hidden]) ~ :not([hidden]),
+        .pdf-export-mode .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+            margin-top: 0.5rem !important;
         }
     </style>
 </head>
