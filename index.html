@@ -14,7 +14,7 @@
     <!-- Google Fonts for typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@400;500;600;800;900&display=swap" rel="stylesheet">
 
     <!-- Libraries for PDF Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -128,10 +128,35 @@
             transform: scale(1.05); 
         }
         
+        /* General Web UI Enhancements */
         .section-card {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 3px solid var(--border-color);
+            border-radius: 1.5rem;
+            position: relative;
+        }
+        
+        /* Decorative Inner Border */
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px dashed var(--icon-color);
+            border-radius: 1.2rem;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Custom Separator beneath Headings */
+        .heading-separator {
+            height: 0;
+            border-top: 3px solid var(--text-heading);
+            border-bottom: 1px solid var(--icon-color);
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 2px;
+            opacity: 0.8;
         }
         
         .lang-btn.active { 
@@ -157,11 +182,109 @@
         
         .heading-style { color: var(--text-heading); }
         .subheading-style { color: var(--text-subheading); }
-        .text-body-style { color: var(--text-body); }
+        
+        .text-body-style { 
+            color: var(--text-body); 
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+        
         .icon-style { color: var(--icon-color); }
         .border-style { border-color: var(--border-color); }
         .tag-bg-style { background-color: var(--tag-bg); }
         .tag-text-style { color: var(--tag-text); }
+
+
+        /* =========================================================
+           PRINTED PDF CV ENHANCEMENTS (Activated during export) 
+           Large, Bold Fonts, Decorative Borders & Crisp Separators
+           ========================================================= */
+        .pdf-export-mode {
+            background: #ffffff !important;
+        }
+        
+        .pdf-export-mode .main-content {
+            padding: 20px !important;
+        }
+
+        .pdf-export-mode .section-card {
+            width: 1000px !important; /* Forces perfect ultra-wide layout for PDF even on mobile */
+            max-width: 1000px !important;
+            background: #ffffff !important;
+            border: 4px solid var(--sidebar-bg) !important; /* Thick formal border */
+            border-radius: 0 !important; /* Square academic corners */
+            box-shadow: 12px 12px 0px var(--border-color) !important; /* Decorative hard shadow */
+            padding: 3.5rem !important;
+            margin-bottom: 3rem !important;
+            position: relative;
+        }
+
+        /* Decorative Inner Border for PDF */
+        .pdf-export-mode .section-card::before {
+            content: '';
+            position: absolute;
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 2px dashed var(--sidebar-bg) !important;
+            border-radius: 0 !important;
+            pointer-events: none;
+            opacity: 1;
+        }
+
+        /* Large Bold Headings */
+        .pdf-export-mode .heading-style {
+            font-size: 2.8rem !important;
+            font-weight: 900 !important;
+            color: var(--sidebar-bg) !important;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .pdf-export-mode h1.heading-style {
+            font-size: 4rem !important;
+            border-bottom: 5px solid var(--sidebar-bg);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .pdf-export-mode .subheading-style {
+            font-size: 1.8rem !important;
+            font-weight: 800 !important;
+            color: var(--text-heading) !important;
+        }
+
+        /* Large Bold Body Text */
+        .pdf-export-mode .text-body-style {
+            font-size: 1.35rem !important;
+            font-weight: 700 !important;
+            color: #000000 !important;
+            line-height: 2 !important;
+        }
+
+        /* Emphasized Separator for PDF */
+        .pdf-export-mode .heading-separator {
+            border-top: 6px solid var(--sidebar-bg) !important;
+            border-bottom: 2px solid var(--sidebar-bg) !important;
+            height: 14px !important;
+            margin-top: 1rem !important;
+            margin-bottom: 2rem !important;
+            opacity: 1;
+        }
+
+        .pdf-export-mode .icon-style {
+            color: var(--sidebar-bg) !important;
+            font-size: 1.8rem !important;
+        }
+
+        .pdf-export-mode .tag-bg-style {
+            background-color: var(--bg-gradient-start) !important;
+            color: var(--sidebar-bg) !important;
+            border: 2px solid var(--sidebar-bg) !important;
+            font-size: 1.25rem !important;
+            font-weight: 800 !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 0 !important; /* Square tags to match border */
+        }
     </style>
 </head>
 <body data-theme="default">
@@ -222,13 +345,14 @@
         <main id="main-content" class="main-content w-full p-4 md:p-8">
             
             <!-- Personal Information Section -->
-            <section id="personal-info" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+            <section id="personal-info" class="mb-8 section-card p-6 shadow-md">
                 <div class="en-text">
                     <div class="text-center mb-6">
                         <h1 class="text-4xl font-bold heading-style">Dr. Mazen Badawy</h1>
-                        <p class="text-xl subheading-style">English Language Lecturer</p>
+                        <p class="text-xl subheading-style mt-2">English Language Lecturer</p>
                     </div>
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-user-circle mr-3"></i>Personal Information</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-user-circle mr-3"></i>Personal Information</h2>
+                    <div class="heading-separator"></div>
                     <ul class="space-y-2 text-body-style">
                         <li><i class="fas fa-map-marker-alt w-5 mr-2 icon-style"></i><strong>Address:</strong> 27, El Tahreer St, Kafr El Sheikh, Egypt.</li>
                         <li><i class="fas fa-flag w-5 mr-2 icon-style"></i><strong>Nationality:</strong> Egyptian</li>
@@ -242,9 +366,10 @@
                 <div class="ar-text ar-lang">
                     <div class="text-center mb-6">
                         <h1 class="text-4xl font-bold heading-style">د/ مازن بدوي</h1>
-                        <p class="text-xl subheading-style">دكتور/ محاضر لغة انجليزية</p>
+                        <p class="text-xl subheading-style mt-2">دكتور/ محاضر لغة انجليزية</p>
                     </div>
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-user-circle ml-3"></i>المعلومات الشخصية</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-user-circle ml-3"></i>المعلومات الشخصية</h2>
+                    <div class="heading-separator"></div>
                     <ul class="space-y-2 text-body-style text-right">
                         <li><i class="fas fa-map-marker-alt w-5 ml-2 icon-style"></i><strong>العنوان:</strong> 27، شارع التحرير، كفر الشيخ، مصر.</li>
                         <li><i class="fas fa-flag w-5 ml-2 icon-style"></i><strong>الجنسية:</strong> مصري</li>
@@ -258,9 +383,10 @@
             </section>
 
             <!-- Qualifications Section -->
-            <section id="qualifications" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+            <section id="qualifications" class="mb-8 section-card p-6 shadow-md">
                 <div class="en-text">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-graduation-cap mr-3"></i>Qualifications</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-graduation-cap mr-3"></i>Qualifications</h2>
+                    <div class="heading-separator"></div>
                     <div class="space-y-4 text-body-style">
                         <p><strong>Ph.D. in Curricula & Instruction of English (TEFL), 2018</strong> - Kafrelshiekh University</p>
                         <p><strong>Master in Curricula & Instruction of English (TEFL), 2010</strong> - Kafrelshiekh University</p>
@@ -270,7 +396,8 @@
                     </div>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-graduation-cap ml-3"></i>المؤهلات</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-graduation-cap ml-3"></i>المؤهلات</h2>
+                    <div class="heading-separator"></div>
                     <div class="space-y-4 text-body-style">
                         <p><strong>دكتوراه في مناهج وتدريس اللغة الإنجليزية (TEFL), 2018</strong> - جامعة كفر الشيخ</p>
                         <p><strong>ماجستير في مناهج وتدريس اللغة الإنجليزية (TEFL), 2010</strong> - جامعة كفر الشيخ</p>
@@ -282,9 +409,10 @@
             </section>
 
             <!-- Experience Section -->
-            <section id="experience" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+            <section id="experience" class="mb-8 section-card p-6 shadow-md">
                 <div class="en-text">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-briefcase mr-3"></i>Experience</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-briefcase mr-3"></i>Experience</h2>
+                    <div class="heading-separator"></div>
                     <div class="space-y-4 text-body-style">
                         <p><strong>English Language Lecturer</strong> at Higher Institute of Engineering and Technology (H.I.E.T) in Kafrelshiekh (Jan, 2018– till now)</p>
                         <p><strong>English Language Lecturer</strong> at Higher Institute of Engineering and Technology (H.I.E.T) in EL-Mahala (Sep, 2022– till now)</p>
@@ -293,7 +421,8 @@
                     </div>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-briefcase ml-3"></i>الخبرات المهنية</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-briefcase ml-3"></i>الخبرات المهنية</h2>
+                    <div class="heading-separator"></div>
                     <div class="space-y-4 text-body-style">
                         <p><strong>مدرس لغة انجليزية</strong> في المعهد العالي للهندسة والتكنولوجيا (H.I.E.T) في كفر الشيخ (يناير 2018 حتى الآن)</p>
                         <p><strong>مدرس لغة انجليزية</strong> في المعهد العالي للهندسة والتكنولوجيا (H.I.E.T) بالمحلة (سبتمبر 2022 – حتى الآن)</p>
@@ -304,21 +433,24 @@
             </section>
 
             <!-- Publications Section -->
-            <section id="publications" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+            <section id="publications" class="mb-8 section-card p-6 shadow-md">
                 <div class="en-text">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-book-open mr-3"></i>Publications</h2>
-                    <ul class="list-disc list-inside space-y-2 text-body-style">
-                        <li>El-Banna, A. I., Naeem, M. A., & <strong>Badawy, M. </strong> (2025). A controversial issue: Who is more entitled to teach language skills and ESP courses? <i>International Journal of Learning Management Systems</i>, 13(4), 63–73.</li>
+                    <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-book-open mr-3"></i>Publications</h2>
+                    <div class="heading-separator"></div>
+                    <ul class="list-disc list-inside space-y-3 text-body-style">
+                        <li>El-Banna, A. I., Naeem, M. A., & <strong>Badawy, M. </strong> (2025). A Controversial Issue: Who Is More Entitled to Teach Language Skills and ESP Courses? <i>International Journal of Learning Management Systems</i>, 13(4), 63–73.</li>
+                        <li>El-Banna, N. A. I., & <strong>Badawy, M. F.</strong> (2024). Using a Technology-Enhanced Flipped Classroom Model to Develop EFL Engineering Students’ Punctuation Marks. <i>Journal of Educational and Social Studies - Faculty of Education, Helwan University</i>, 30(1).</li>
                         <li><strong>Badawy, M.,</strong> & El-Banna, N. (2024). Evaluation Practices Incorporated in 2nd Year Primary English Teacher’s Guide: A Content Analysis.<i>Journal of the Faculty of Education, Kafrelsheikh University</i>, 2(3).</li>
                         <li><strong>Badawy, M.,</strong> & El-Banna, N. (2023). English Language Skills for Engineering Students from the Perspective of the Stakeholders: Needs Analysis Study.<i>Journal of the Faculty of Education, Kafrelsheikh University</i>, 111, 1–32</li>
                         <li><strong>Badawy, M.,</strong> El-Banna, A. & Naeem, M. (2018). The Effect of Using an Interactive Digital Storytelling Environment on Developing Critical Reading Skills for Third-Year Preparatory Students.  <i>Journal of Faculty of Education, Kafrelsheikh University</i>. 4(1).</li>
                     </ul>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-book-open ml-3"></i>الأبحاث المنشورة</h2>
-                    <ul class="list-disc list-inside space-y-2 text-body-style">
-                        <li>El-Banna, A. I., Naeem, M. A., & <strong>Badawy, M.</strong> (2025). A controversial issue: Who is more entitled to teach language skills and ESP courses? <i>International Journal of Learning Management Systems</i>, 13(4), 63–73.</li>
-                        <li>El-Banna, N. A. I., & <strong>Badawy, M. F.</strong> (2024). Using a Technology-Enhanced Flipped Classroom Model to Develop EFL Engineering Students’ Punctuation Marks. <i>Journal of Educational and Social Studies - Faculty of Education, Capital University.</i> 30(2).</li>
+                    <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-book-open ml-3"></i>الأبحاث المنشورة</h2>
+                    <div class="heading-separator"></div>
+                    <ul class="list-disc list-inside space-y-3 text-body-style">
+                        <li>El-Banna, A. I., Naeem, M. A., & <strong>Badawy, M.</strong> (2025). A Controversial Issue: Who Is More Entitled to Teach Language Skills and ESP Courses? <i>International Journal of Learning Management Systems</i>, 13(4), 63–73.</li>
+                        <li>El-Banna, N. A. I., & <strong>Badawy, M. F.</strong> (2024). Using a Technology-Enhanced Flipped Classroom Model to Develop EFL Engineering Students’ Punctuation Marks. <i>Journal of Educational and Social Studies - Faculty of Education, Helwan University</i>, 30(1).</li>
                         <li><strong>Badawy, M. F.</strong>, & El-Banna, N. (2024). Evaluation Practices Incorporated in 2nd Year Primary English Teacher’s Guide: A Content Analysis.  <i>Journal of Faculty of Education, Kafrelshiekh University.</i> 4(1).</li>
                         <li><strong>Badawy, M. F.</strong> & El-Banna, N. (2023). English Language Skills for Engineering Students from the Perspective of the Stakeholders: Needs Analysis Study.  <i>Journal of the Faculty of Education,, Kafrelsheikh University.</i>, 111, 1–32.</li>
                         <li><strong>Badawy, M. F.</strong>, El-Banna, A. & Naeem, M. (2018). The Effect of Using an Interactive Digital Storytelling Environment on Developing Critical Reading Skills for Third-Year Preparatory Students.  <i>Journal of Faculty of Education Kafrelsheikh University</i>. 4(1).</li>
@@ -327,32 +459,35 @@
             </section>
 
             <!-- Memberships Section -->
-            <section id="memberships" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+            <section id="memberships" class="mb-8 section-card p-6 shadow-md">
                 <div class="en-text">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-users mr-3"></i>Memberships</h2>
-                    <div class="flex flex-wrap gap-4">
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">NileTESOL</span>
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">Microsoft Educational Community</span>
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">International Literacy Association (ILA)</span>
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">English Language Teachers Contacts Scheme (ELTECS)</span>
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">Association for Middle Level Education (AMLE)</span>
+                    <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-users mr-3"></i>Memberships</h2>
+                    <div class="heading-separator"></div>
+                    <div class="flex flex-wrap gap-4 mt-4">
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">NileTESOL</span>
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">Microsoft Educational Community</span>
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">International Literacy Association (ILA)</span>
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">English Language Teachers Contacts Scheme (ELTECS)</span>
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">Association for Middle Level Education (AMLE)</span>
                     </div>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-users ml-3"></i>العضويات</h2>
-                    <div class="flex flex-wrap gap-4 justify-end">
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">NileTESOL</span>
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">Microsoft Educational Community</span>
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">International Literacy Association (ILA)</span>
-                        <span class="tag-bg-style tag-text-style px-3 py-1 rounded-full font-semibold">English Language Teachers Contacts Scheme (ELTECS)</span>
+                    <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-users ml-3"></i>العضويات</h2>
+                    <div class="heading-separator"></div>
+                    <div class="flex flex-wrap gap-4 justify-end mt-4">
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">NileTESOL</span>
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">Microsoft Educational Community</span>
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">International Literacy Association (ILA)</span>
+                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">English Language Teachers Contacts Scheme (ELTECS)</span>
                     </div>
                 </div>
             </section>
 
             <!-- Skills Section -->
-            <section id="skills" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+            <section id="skills" class="mb-8 section-card p-6 shadow-md">
                 <div class="en-text">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-laptop-code mr-3"></i>Computer Skills</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-laptop-code mr-3"></i>Computer Skills</h2>
+                    <div class="heading-separator"></div>
                     <ul class="list-disc list-inside space-y-2 text-body-style">
                         <li>Microsoft Office Suite</li>
                         <li>Authoring Tools (Captivate, Articulate, iSpring)</li>
@@ -361,7 +496,8 @@
                     </ul>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-laptop-code ml-3"></i>مهارات الحاسوب</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-laptop-code ml-3"></i>مهارات الحاسوب</h2>
+                    <div class="heading-separator"></div>
                     <ul class="list-disc list-inside space-y-2 text-body-style">
                         <li>مايكروسوفت أوفيس</li>
                         <li>أدوات التأليف (تصميم المواد التعليمية للتعلم الإلكتروني)</li>
@@ -372,12 +508,13 @@
             </section>
 
             <!-- Training Courses Section -->
-            <section id="training-courses" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+            <section id="training-courses" class="mb-8 section-card p-6 shadow-md">
                 <div class="en-text">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-chalkboard-teacher mr-3"></i>Training Courses</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-chalkboard-teacher mr-3"></i>Training Courses</h2>
+                    <div class="heading-separator"></div>
                     <div class="space-y-6">
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">Cisco</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">Cisco</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>Introduction to CyberSecurity</li>
                                 <li>Introduction to IoT</li>
@@ -385,7 +522,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">Mahara-Tech / ITI</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">Mahara-Tech / ITI</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>Database Fundamentals</li>
                                 <li>eLearning Fundamentals</li>
@@ -397,7 +534,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">Egypt FWD / Udacity</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">Egypt FWD / Udacity</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>Data Challenger Track</li>
                                 <li>Web Development Challenger Track</li>
@@ -405,7 +542,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">Microsoft (Core for Teaching)</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">Microsoft (Core for Teaching)</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>Microsoft Certified Educator for Technology Literacy for Educators</li>
                                 <li>Microsoft 21st Century Learning Design (Courses 1–8)</li>
@@ -415,7 +552,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">Other Courses</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">Other Courses</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>Gemini Certified Educator</li>
                                 <li>Vibe Coding</li>
@@ -426,10 +563,11 @@
                     </div>
                 </div>
                 <div class="ar-text ar-lang text-right">
-                    <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-chalkboard-teacher ml-3"></i>الدورات التدريبية</h2>
+                    <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-chalkboard-teacher ml-3"></i>الدورات التدريبية</h2>
+                    <div class="heading-separator"></div>
                     <div class="space-y-6">
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">سيسكو</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">سيسكو</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>مقدمة في الأمن السيبراني</li>
                                 <li>مقدمة في إنترنت الأشياء</li>
@@ -437,7 +575,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">مهارة تك / ITI</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">مهارة تك / ITI</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>مقدمة في قواعد البيانات</li>
                                 <li>أساسيات التعلم الإلكتروني</li>
@@ -449,7 +587,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">مصر الرقمية / Udacity</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">مصر الرقمية / Udacity</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>مسار تحدي البيانات</li>
                                 <li>مسار تحدي تطوير الويب</li>
@@ -457,7 +595,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">مايكروسوفت (الأساسية للتدريس)</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">مايكروسوفت (الأساسية للتدريس)</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>مُعلّم معتمد من مايكروسوفت لمحو أمية التكنولوجيا للمعلمين</li>
                                 <li>تصميم التعلم في القرن الحادي والعشرين (1–8)</li>
@@ -467,7 +605,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold subheading-style mb-2">دورات أخرى</h3>
+                            <h3 class="text-xl font-bold subheading-style mb-2">دورات أخرى</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>معلم معتمد من جيميني</li>
                                 <li>االبرمجة بمساعدة الذكاء الصناعي</li>
@@ -547,14 +685,6 @@
         <div class="relative bg-white p-4 rounded-lg shadow-xl max-w-sm w-full mx-4">
             <button id="close-modal-btn" class="absolute -top-3 -right-3 text-white bg-red-500 rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold hover:bg-red-600 transition-colors">&times;</button>
             <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mazenegykfs.github.io'">
-        </div>
-    </div>
-
-    <!-- QR Code Modal -->
-    <div id="qr-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden transition-opacity duration-300">
-        <div class="relative bg-white p-4 rounded-lg shadow-xl max-w-sm w-full mx-4">
-            <button id="close-modal-btn" class="absolute -top-3 -right-3 text-white bg-red-500 rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold hover:bg-red-600 transition-colors">&times;</button>
-            <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.onerror=null; this.src='https://placehold.co/300x300/CCCCCC/FFFFFF?text=QR+Code+Not+Found'">
         </div>
     </div>
 
@@ -774,8 +904,11 @@
                 cvPdfBtnText.textContent = currentLang === 'ar' ? 'جاري التصدير...' : 'Exporting...';
                 generateCvPdfBtn.disabled = true;
 
-                const cardSections = cvContent.querySelectorAll('.section-card');
-                cardSections.forEach(s => s.style.boxShadow = 'none');
+                // 1) Apply the robust, large, bold, decorated print styles specifically for PDF
+                body.classList.add('pdf-export-mode');
+                
+                // 2) Wait a split-second so the browser repaints the layout with the new gigantic bold fonts
+                await new Promise(resolve => setTimeout(resolve, 300));
 
                 try {
                     const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
@@ -785,10 +918,14 @@
                     const contentWidth = pageWidth - (margin * 2);
                     let y = margin; 
 
-                    const sectionElements = Array.from(cvContent.querySelectorAll('section'));
+                    const sectionElements = Array.from(cvContent.querySelectorAll('.section-card'));
 
                     for (const section of sectionElements) {
-                        const canvas = await html2canvas(section, { scale: 2, useCORS: true });
+                        const canvas = await html2canvas(section, { 
+                            scale: 2, 
+                            useCORS: true,
+                            windowWidth: 1200 // Force canvas to simulate a wide desktop window so layout doesn't break on mobile
+                        });
                         
                         const imgData = canvas.toDataURL('image/png');
                         const imgWidth = canvas.width;
@@ -809,7 +946,8 @@
                 } catch (err) {
                     console.error("CV PDF generation failed:", err);
                 } finally {
-                    cardSections.forEach(s => s.style.boxShadow = '');
+                    // 3) Remove the print styles to restore the normal web view
+                    body.classList.remove('pdf-export-mode');
                     cvPdfBtnText.textContent = originalButtonText;
                     generateCvPdfBtn.disabled = false;
                 }
