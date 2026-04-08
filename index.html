@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Mazen Badawy - Curriculum Vitae</title>
+
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- Google Fonts for typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <!-- Libraries for PDF Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <style>
         /* Custom styles and Theme Engine */
         :root {
@@ -59,14 +64,14 @@
             --header-bg: #616161; --text-heading: #424242; --text-subheading: #757575;
             --icon-color: #9e9e9e; --border-color: #bdbdbd; --tag-bg: #f5f5f5; --tag-text: #424242;
         }
-        
+
         [data-theme="orange"] {
             --bg-gradient-start: #fff8e1; --bg-gradient-mid: #ffecb3; --bg-gradient-end: #ffe082;
             --sidebar-bg: #f57c00; --sidebar-text-muted: #ffe082; --sidebar-hover-bg: #fb8c00; --sidebar-active-text: #f57c00;
             --header-bg: #f57c00; --text-heading: #fb8c00; --text-subheading: #ff9800;
             --icon-color: #ffa726; --border-color: #ffb74d; --tag-bg: #fff8e1; --tag-text: #f57c00;
         }
-        
+
         [data-theme="teal"] {
             --bg-gradient-start: #e0f7fa; --bg-gradient-mid: #b2ebf2; --bg-gradient-end: #80deea;
             --sidebar-bg: #00796b; --sidebar-text-muted: #80deea; --sidebar-hover-bg: #00897b; --sidebar-active-text: #00796b;
@@ -81,36 +86,75 @@
             --icon-color: #ef5350; --border-color: #e57373; --tag-bg: #ffebf0; --tag-text: #d32f2f;
         }
 
-        html { scroll-behavior: smooth; }
+        html { 
+            scroll-behavior: smooth; 
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
             transition: background 0.5s ease;
         }
-        .ar-lang { font-family: 'Cairo', sans-serif; }
+        
+        .ar-lang { 
+            font-family: 'Cairo', sans-serif; 
+        }
+        
         .sidebar {
             transition: transform 0.3s ease-in-out, background-color 0.5s ease;
             background-color: var(--sidebar-bg);
             color: var(--sidebar-text);
         }
-        .sidebar-title-custom { color: var(--sidebar-text-muted); }
-        .sidebar-avatar-border { border-color: var(--border-color); }
-        .main-content { transition: margin-left 0.3s ease-in-out; }
-        .sidebar-link:hover { background-color: var(--sidebar-hover-bg); }
-        .sidebar-link.active { background-color: var(--sidebar-active-bg); color: var(--sidebar-active-text); transform: scale(1.05); }
+        
+        .sidebar-title-custom { 
+            color: var(--sidebar-text-muted); 
+        }
+        
+        .sidebar-avatar-border { 
+            border-color: var(--border-color); 
+        }
+        
+        .main-content { 
+            transition: margin-left 0.3s ease-in-out; 
+        }
+        
+        .sidebar-link:hover { 
+            background-color: var(--sidebar-hover-bg); 
+        }
+        
+        .sidebar-link.active { 
+            background-color: var(--sidebar-active-bg); 
+            color: var(--sidebar-active-text); 
+            transform: scale(1.05); 
+        }
+        
         .section-card {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .lang-btn.active { background-color: #1976d2; color: white; }
+        
+        .lang-btn.active { 
+            background-color: #1976d2; 
+            color: white; 
+        }
+        
         .header {
             background-color: var(--header-bg);
             color: var(--header-text);
-            padding: 0.5rem; text-align: center; font-size: 0.875rem; font-weight: bold;
+            padding: 0.5rem; 
+            text-align: center; 
+            font-size: 0.875rem; 
+            font-weight: bold;
             transition: background-color 0.5s ease;
         }
-        #business-card-container { position: fixed; left: -9999px; top: 0; }
+        
+        #business-card-container { 
+            position: fixed; 
+            left: -9999px; 
+            top: 0; 
+        }
+        
         .heading-style { color: var(--text-heading); }
         .subheading-style { color: var(--text-subheading); }
         .text-body-style { color: var(--text-body); }
@@ -145,7 +189,7 @@
             <button id="lang-ar" class="lang-btn py-1 px-3 rounded-lg bg-white/30 backdrop-blur-sm text-sm font-semibold text-blue-900 border border-white/40 hover:bg-white/50 transition-all shadow-md">العربية</button>
         </div>
     </div>
-    
+
     <!-- Theme Selector -->
     <div id="theme-selector" class="fixed bottom-4 right-4 z-50">
         <button id="theme-toggle-btn" class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-700 transition-all focus:outline-none">
@@ -215,7 +259,7 @@
 
             <!-- Qualifications Section -->
             <section id="qualifications" class="mb-8 section-card p-6 rounded-2xl shadow-md">
-                 <div class="en-text">
+                <div class="en-text">
                     <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-graduation-cap mr-3"></i>Qualifications</h2>
                     <div class="space-y-4 text-body-style">
                         <p><strong>Ph.D. in Curricula & Instruction of English (TEFL), 2018</strong> - Kafrelshiekh University</p>
@@ -239,7 +283,7 @@
 
             <!-- Experience Section -->
             <section id="experience" class="mb-8 section-card p-6 rounded-2xl shadow-md">
-                 <div class="en-text">
+                <div class="en-text">
                     <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-briefcase mr-3"></i>Experience</h2>
                     <div class="space-y-4 text-body-style">
                         <p><strong>English Language Lecturer</strong> at Higher Institute of Engineering and Technology (H.I.E.T) in Kafrelshiekh (Jan, 2018– till now)</p>
@@ -270,10 +314,10 @@
                         <li><strong>Badawy, M.,</strong> El-Banna, A. & Naeem, M. (2018). The Effect of Using an Interactive Digital Storytelling Environment on Developing Critical Reading Skills for Third-Year Preparatory Students.  <i>Journal of Faculty of Education, Kafrelsheikh University</i>. 4(1).</li>
                     </ul>
                 </div>
-                 <div class="ar-text ar-lang text-right">
+                <div class="ar-text ar-lang text-right">
                     <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center justify-start"><i class="fas fa-book-open ml-3"></i>الأبحاث المنشورة</h2>
                     <ul class="list-disc list-inside space-y-2 text-body-style">
-                        <li>El-Banna, A. I., Naeem, M. A., & <strong>Badawy, M. F.</strong> (2025). A controversial issue: Who is more entitled to teach language skills and ESP courses? <i>International Journal of Learning Management Systems</i>(1)5.210-232</li>
+                        <li>El-Banna, A. I., Naeem, M. A., & <strong>Badawy, M.</strong> (2025). A controversial issue: Who is more entitled to teach language skills and ESP courses? <i>International Journal of Learning Management Systems</i>, 13(4), 63–73.</li>
                         <li>El-Banna, N. A. I., & <strong>Badawy, M. F.</strong> (2024). Using a Technology-Enhanced Flipped Classroom Model to Develop EFL Engineering Students’ Punctuation Marks. <i>Journal of Educational and Social Studies - Faculty of Education, Capital University.</i> 30(2).</li>
                         <li><strong>Badawy, M. F.</strong>, & El-Banna, N. (2024). Evaluation Practices Incorporated in 2nd Year Primary English Teacher’s Guide: A Content Analysis.  <i>Journal of Faculty of Education, Kafrelshiekh University.</i> 4(1).</li>
                         <li><strong>Badawy, M. F.</strong> & El-Banna, N. (2023). English Language Skills for Engineering Students from the Perspective of the Stakeholders: Needs Analysis Study.  <i>Journal of the Faculty of Education,, Kafrelsheikh University.</i>, 111, 1–32.</li>
@@ -281,7 +325,7 @@
                     </ul>
                 </div>
             </section>
-            
+
             <!-- Memberships Section -->
             <section id="memberships" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                 <div class="en-text">
@@ -304,9 +348,9 @@
                     </div>
                 </div>
             </section>
-            
+
             <!-- Skills Section -->
-             <section id="skills" class="mb-8 section-card p-6 rounded-2xl shadow-md">
+            <section id="skills" class="mb-8 section-card p-6 rounded-2xl shadow-md">
                 <div class="en-text">
                     <h2 class="text-3xl font-bold heading-style border-style border-b-4 pb-2 mb-4 flex items-center"><i class="fas fa-laptop-code mr-3"></i>Computer Skills</h2>
                     <ul class="list-disc list-inside space-y-2 text-body-style">
@@ -352,7 +396,7 @@
                                 <li>Building Web Applications using PHP & MySQL</li>
                             </ul>
                         </div>
-                         <div>
+                        <div>
                             <h3 class="text-xl font-semibold subheading-style mb-2">Egypt FWD / Udacity</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>Data Challenger Track</li>
@@ -404,7 +448,7 @@
                                 <li>بناء تطبيقات الويب باستخدام PHP وMySQL</li>
                             </ul>
                         </div>
-                         <div>
+                        <div>
                             <h3 class="text-xl font-semibold subheading-style mb-2">مصر الرقمية / Udacity</h3>
                             <ul class="list-disc list-inside space-y-1 text-body-style">
                                 <li>مسار تحدي البيانات</li>
@@ -442,11 +486,11 @@
         <!-- English Version -->
         <div id="business-card-en" class="w-[525px] h-[300px] bg-white shadow-lg flex font-sans">
             <div class="w-2/5 bg-blue-800 text-white p-6 flex flex-col justify-center items-center text-center">
-                <img src="https://placehold.co/80x80/FFFFFF/0D47A1?text=MB" alt="Dr. Mazen Badawy" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400">
+                <img src="00.png" alt="Dr. Mazen Badawy" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400 object-cover bg-white" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mazen+Badawy&background=0D47A1&color=fff&size=80'">
                 <h2 class="text-2xl font-bold">Dr. Mazen Badawy</h2>
                 <p class="text-blue-200">English Language Lecturer</p>
             </div>
-            <div class="w-3/5 p-4 flex flex-col"> 
+            <div class="w-3/5 p-4 flex flex-col">
                 <!-- Text Content -->
                 <div>
                     <div class="mb-4">
@@ -463,14 +507,15 @@
                 <div class="flex-grow"></div>
                 <!-- QR Code Container -->
                 <div class="flex justify-start">
-                    <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-16 h-16" onerror="this.src='https://placehold.co/64x64/1E293B/FFFFFF?text=QR'">
+                    <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-16 h-16" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=https://mazenegykfs.github.io'">
                 </div>
             </div>
         </div>
+
         <!-- Arabic Version -->
         <div id="business-card-ar" class="w-[525px] h-[300px] bg-white shadow-lg flex font-sans ar-lang" dir="rtl">
             <div class="w-3/5 p-4 flex flex-col text-right">
-                 <!-- Text Content -->
+                <!-- Text Content -->
                 <div>
                     <div class="mb-4">
                         <h3 class="font-bold text-blue-900 border-b-2 border-blue-200 pb-1 mb-2">جهات العمل</h3>
@@ -486,29 +531,37 @@
                 <div class="flex-grow"></div>
                 <!-- QR Code Container -->
                 <div class="flex justify-end">
-                     <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-16 h-16" onerror="this.src='https://placehold.co/64x64/1E293B/FFFFFF?text=QR'">
+                    <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-16 h-16" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=https://mazenegykfs.github.io'">
                 </div>
             </div>
             <div class="w-2/5 bg-blue-800 text-white p-6 flex flex-col justify-center items-center text-center">
-                <img src="https://placehold.co/80x80/FFFFFF/0D47A1?text=MB" alt="د/ مازن بدوي" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400">
+                <img src="00.png" alt="د/ مازن بدوي" class="w-20 h-20 rounded-full mb-3 border-2 border-blue-400 object-cover bg-white" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mazen+Badawy&background=0D47A1&color=fff&size=80'">
                 <h2 class="text-2xl font-bold">د/ مازن بدوي</h2>
                 <p class="text-blue-200">دكتور/ محاضر لغة انجليزية</p>
             </div>
         </div>
     </div>
-    
+
     <!-- QR Code Modal -->
     <div id="qr-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden transition-opacity duration-300">
         <div class="relative bg-white p-4 rounded-lg shadow-xl max-w-sm w-full mx-4">
             <button id="close-modal-btn" class="absolute -top-3 -right-3 text-white bg-red-500 rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold hover:bg-red-600 transition-colors">&times;</button>
-            <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.src='https://placehold.co/300x300/CCCCCC/FFFFFF?text=QR+Code+Not+Found'">
+            <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mazenegykfs.github.io'">
         </div>
     </div>
 
+    <!-- QR Code Modal -->
+    <div id="qr-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden transition-opacity duration-300">
+        <div class="relative bg-white p-4 rounded-lg shadow-xl max-w-sm w-full mx-4">
+            <button id="close-modal-btn" class="absolute -top-3 -right-3 text-white bg-red-500 rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold hover:bg-red-600 transition-colors">&times;</button>
+            <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.onerror=null; this.src='https://placehold.co/300x300/CCCCCC/FFFFFF?text=QR+Code+Not+Found'">
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // --- Get DOM elements ---
+            
+            /* --- Get DOM elements --- */
             const sections = document.querySelectorAll('main section');
             const navMenu = document.getElementById('nav-menu');
             const langEnBtn = document.getElementById('lang-en');
@@ -527,10 +580,13 @@
             const themeOptions = document.getElementById('theme-options');
             const body = document.body;
             
-            // --- Translations for dynamic content ---
+            /* --- Translations for dynamic content --- */
             const translations = {
                 en: {
-                    name: "Dr. Mazen Badawy", title: "English Language Lecturer", cardBtn: "Card", cvPdfBtn: "Export CV",
+                    name: "Dr. Mazen Badawy", 
+                    title: "English Language Lecturer", 
+                    cardBtn: "Card", 
+                    cvPdfBtn: "Export CV",
                     sections: {
                         'personal-info': { text: "Personal Info", icon: "fas fa-user-circle" },
                         'qualifications': { text: "Qualifications", icon: "fas fa-graduation-cap" },
@@ -542,7 +598,10 @@
                     }
                 },
                 ar: {
-                    name: "د/ مازن بدوي", title: "دكتور/ محاضر لغة انجليزية", cardBtn: "بطاقة", cvPdfBtn: "تصدير السيرة الذاتية",
+                    name: "د/ مازن بدوي", 
+                    title: "دكتور/ محاضر لغة انجليزية", 
+                    cardBtn: "بطاقة", 
+                    cvPdfBtn: "تصدير السيرة الذاتية",
                     sections: {
                         'personal-info': { text: "المعلومات الشخصية", icon: "fas fa-user-circle" },
                         'qualifications': { text: "المؤهلات", icon: "fas fa-graduation-cap" },
@@ -555,10 +614,15 @@
                 }
             };
 
-            // --- Theme Selector Logic ---
+            /* --- Theme Selector Logic --- */
             const themes = {
-                'default': 'Default Blue', 'green': 'Forest Green', 'purple': 'Royal Purple',
-                'gray': 'Modern Gray', 'orange': 'Sunset Orange', 'teal': 'Deep Teal', 'red': 'Crimson Red'
+                'default': 'Default Blue', 
+                'green': 'Forest Green', 
+                'purple': 'Royal Purple',
+                'gray': 'Modern Gray', 
+                'orange': 'Sunset Orange', 
+                'teal': 'Deep Teal', 
+                'red': 'Crimson Red'
             };
             
             const swatchStyle = document.createElement('style');
@@ -577,7 +641,10 @@
                 const button = document.createElement('button');
                 button.innerHTML = `<span class="inline-block w-4 h-4 rounded-full mr-3 theme-swatch-${key}"></span> ${themes[key]}`;
                 button.classList.add('w-full', 'text-left', 'px-2', 'py-1', 'rounded', 'hover:bg-gray-100', 'flex', 'items-center', 'text-sm', 'text-gray-700');
-                button.onclick = () => { setTheme(key); themeOptions.classList.add('hidden'); };
+                button.onclick = () => { 
+                    setTheme(key); 
+                    themeOptions.classList.add('hidden'); 
+                };
                 themeOptions.appendChild(button);
             });
 
@@ -587,15 +654,16 @@
             }
 
             themeToggleButton.addEventListener('click', () => themeOptions.classList.toggle('hidden'));
+            
             document.addEventListener('click', (e) => {
                 if (!themeToggleButton.contains(e.target) && !themeOptions.contains(e.target)) {
                     themeOptions.classList.add('hidden');
                 }
             });
+            
             setTheme(localStorage.getItem('cv-theme') || 'default');
 
-
-            // --- Navigation and Language Logic ---
+            /* --- Navigation and Language Logic --- */
             function updateNav(lang) {
                 const sectionData = translations[lang].sections;
                 navMenu.innerHTML = '';
@@ -618,16 +686,21 @@
             function switchLanguage(lang) {
                 document.documentElement.lang = lang;
                 const isAr = lang === 'ar';
+                
                 document.querySelectorAll('.en-text').forEach(el => el.style.display = isAr ? 'none' : 'block');
                 document.querySelectorAll('.ar-text').forEach(el => el.style.display = isAr ? 'block' : 'none');
+                
                 document.body.dir = isAr ? 'rtl' : 'ltr';
                 document.getElementById('sidebar').style.textAlign = isAr ? 'right' : 'left';
+                
                 langEnBtn.classList.toggle('active', !isAr);
                 langArBtn.classList.toggle('active', isAr);
+                
                 sidebarName.textContent = translations[lang].name;
                 sidebarTitle.textContent = translations[lang].title;
                 pdfBtnText.textContent = translations[lang].cardBtn;
                 cvPdfBtnText.textContent = translations[lang].cvPdfBtn;
+                
                 updateNav(lang);
                 updateActiveLink();
             }
@@ -640,6 +713,7 @@
                         current = section.getAttribute('id');
                     }
                 });
+                
                 document.querySelectorAll('.sidebar-link').forEach(link => {
                     link.classList.remove('active');
                     if (link.dataset.sectionId === current) {
@@ -648,7 +722,7 @@
                 });
             }
 
-            // --- PDF Generation ---
+            /* --- PDF Generation --- */
             function generateCardPDF() {
                 const currentLang = document.documentElement.lang;
                 const cardId = currentLang === 'ar' ? 'business-card-ar' : 'business-card-en';
@@ -658,15 +732,34 @@
                 pdfBtnText.textContent = currentLang === 'ar' ? 'جاري الإنشاء...' : 'Generating...';
                 generatePdfBtn.disabled = true;
 
+                // Temporarily bring container into viewport to ensure images render correctly in canvas
+                const container = document.getElementById('business-card-container');
+                const originalLeft = container.style.left;
+                container.style.left = '0';
+                container.style.zIndex = '-1';
+                container.style.opacity = '0.01';
+
                 html2canvas(cardElement, { scale: 3, useCORS: true }).then(canvas => {
                     const imgData = canvas.toDataURL('image/png');
                     const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [525, 300] });
                     pdf.addImage(imgData, 'PNG', 0, 0, 525, 300);
                     pdf.save('Dr-Mazen-Badawy-Business-Card.pdf');
+                    
+                    // Restore original state
+                    container.style.left = originalLeft;
+                    container.style.zIndex = '';
+                    container.style.opacity = '1';
+                    
                     pdfBtnText.textContent = originalBtnText;
                     generatePdfBtn.disabled = false;
                 }).catch(err => {
                     console.error("Card PDF generation failed:", err);
+                    
+                    // Restore original state
+                    container.style.left = originalLeft;
+                    container.style.zIndex = '';
+                    container.style.opacity = '1';
+                    
                     pdfBtnText.textContent = originalBtnText;
                     generatePdfBtn.disabled = false;
                 });
@@ -722,11 +815,16 @@
                 }
             }
             
-            // --- QR Code Modal Logic ---
-            function showQrModal() { qrModal.classList.remove('hidden'); }
-            function hideQrModal() { qrModal.classList.add('hidden'); }
+            /* --- QR Code Modal Logic --- */
+            function showQrModal() { 
+                qrModal.classList.remove('hidden'); 
+            }
             
-            // --- Event Listeners ---
+            function hideQrModal() { 
+                qrModal.classList.add('hidden'); 
+            }
+            
+            /* --- Event Listeners --- */
             langEnBtn.addEventListener('click', () => switchLanguage('en'));
             langArBtn.addEventListener('click', () => switchLanguage('ar'));
             generatePdfBtn.addEventListener('click', generateCardPDF);
@@ -734,34 +832,15 @@
             window.addEventListener('scroll', updateActiveLink);
             showQrBtn.addEventListener('click', showQrModal);
             closeModalBtn.addEventListener('click', hideQrModal);
-            qrModal.addEventListener('click', (e) => { if (e.target === qrModal) hideQrModal(); });
+            qrModal.addEventListener('click', (e) => { 
+                if (e.target === qrModal) hideQrModal(); 
+            });
 
-            
-            // --- Initial setup ---
+            /* --- Initial setup --- */
             switchLanguage('en');
             updateActiveLink();
+            
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
