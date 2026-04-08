@@ -94,6 +94,7 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
             transition: background 0.5s ease;
+            padding-bottom: 40px; /* Room for animated footer */
         }
         
         .ar-lang { 
@@ -106,27 +107,11 @@
             color: var(--sidebar-text);
         }
         
-        .sidebar-title-custom { 
-            color: var(--sidebar-text-muted); 
-        }
-        
-        .sidebar-avatar-border { 
-            border-color: var(--border-color); 
-        }
-        
-        .main-content { 
-            transition: margin-left 0.3s ease-in-out; 
-        }
-        
-        .sidebar-link:hover { 
-            background-color: var(--sidebar-hover-bg); 
-        }
-        
-        .sidebar-link.active { 
-            background-color: var(--sidebar-active-bg); 
-            color: var(--sidebar-active-text); 
-            transform: scale(1.05); 
-        }
+        .sidebar-title-custom { color: var(--sidebar-text-muted); }
+        .sidebar-avatar-border { border-color: var(--border-color); }
+        .main-content { transition: margin-left 0.3s ease-in-out; }
+        .sidebar-link:hover { background-color: var(--sidebar-hover-bg); }
+        .sidebar-link.active { background-color: var(--sidebar-active-bg); color: var(--sidebar-active-text); transform: scale(1.05); }
         
         /* General Web UI Enhancements */
         .section-card {
@@ -137,58 +122,27 @@
             position: relative;
         }
         
-        /* Decorative Inner Border */
         .section-card::before {
-            content: '';
-            position: absolute;
-            top: 6px; left: 6px; right: 6px; bottom: 6px;
-            border: 1px dashed var(--icon-color);
-            border-radius: 1.2rem;
-            pointer-events: none;
-            opacity: 0.6;
+            content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px dashed var(--icon-color); border-radius: 1.2rem; pointer-events: none; opacity: 0.6;
         }
 
-        /* Custom Separator beneath Headings */
         .heading-separator {
-            height: 0;
-            border-top: 3px solid var(--text-heading);
-            border-bottom: 1px solid var(--icon-color);
-            margin-top: 0.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 2px;
-            opacity: 0.8;
-        }
-        
-        .lang-btn.active { 
-            background-color: #1976d2; 
-            color: white; 
+            height: 0; border-top: 3px solid var(--text-heading); border-bottom: 1px solid var(--icon-color);
+            margin-top: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 2px; opacity: 0.8;
         }
         
         .header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 0.5rem; 
-            text-align: center; 
-            font-size: 0.875rem; 
-            font-weight: bold;
+            background-color: var(--header-bg); color: var(--header-text);
+            padding: 0.5rem; text-align: center; font-size: 0.875rem; font-weight: bold;
             transition: background-color 0.5s ease;
         }
         
-        #business-card-container { 
-            position: fixed; 
-            left: -9999px; 
-            top: 0; 
-        }
+        #business-card-container { position: fixed; left: -9999px; top: 0; }
         
         .heading-style { color: var(--text-heading); }
         .subheading-style { color: var(--text-subheading); }
-        
-        .text-body-style { 
-            color: var(--text-body); 
-            font-size: 1.05rem;
-            font-weight: 500;
-        }
-        
+        .text-body-style { color: var(--text-body); font-size: 1.05rem; font-weight: 500; }
         .icon-style { color: var(--icon-color); }
         .border-style { border-color: var(--border-color); }
         .tag-bg-style { background-color: var(--tag-bg); }
@@ -196,137 +150,178 @@
 
 
         /* =========================================================
-           PRINTED PDF CV ENHANCEMENTS (Activated during export) 
-           Large, Bold Fonts, Decorative Borders & Crisp Separators
+           PERSONALIZED CUSTOM BUTTON STYLES 
            ========================================================= */
-        .pdf-export-mode {
-            background: #ffffff !important;
+        .custom-btn {
+            background-size: 200% auto;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+            color: white !important;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            cursor: pointer;
+            text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+            padding: 0.4rem 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .custom-btn:hover {
+            background-position: right center;
+            transform: scale(1.08);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .custom-btn:disabled {
+            filter: grayscale(100%);
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        /* Specific Gradients */
+        .btn-green { background-image: linear-gradient(to right, #11998e 0%, #38ef7d 51%, #11998e 100%); }
+        .btn-blue { background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%); }
+        .btn-purple { background-image: linear-gradient(to right, #8E2DE2 0%, #4A00E0 51%, #8E2DE2 100%); }
+        .btn-red { background-image: linear-gradient(to right, #cb2d3e 0%, #ef473a 51%, #cb2d3e 100%); }
+
+        /* Language Buttons specifics */
+        .lang-btn {
+            opacity: 0.6; padding: 0.2rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+        }
+        .lang-btn.active {
+            opacity: 1; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transform: scale(1.05); background-position: right center;
+        }
+
+        /* Animated Button Icon */
+        .animated-icon {
+            animation: bounce-subtle 2s infinite ease-in-out;
+            display: inline-block;
         }
         
-        .pdf-export-mode .main-content {
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* =========================================================
+           ANIMATED SCROLLING FOOTER 
+           ========================================================= */
+        .animated-footer {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 32px;
+            background: linear-gradient(90deg, #00c6ff, #11998e, #8E2DE2, #00c6ff);
+            background-size: 300% 100%;
+            animation: gradient-scroll 6s linear infinite;
+            color: white; display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 600; z-index: 100;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            letter-spacing: 0.05em;
+        }
+
+        @keyframes gradient-scroll {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+
+        /* =========================================================
+           PRINTED PDF CV ENHANCEMENTS (Applied to Hidden Clone ONLY) 
+           ========================================================= */
+        .pdf-export-wrapper {
+            background: #ffffff !important;
             padding: 10px !important;
         }
 
-        .pdf-export-mode .section-card {
-            width: 1000px !important; /* Forces perfect ultra-wide layout for PDF even on mobile */
-            max-width: 1000px !important;
-            background: #ffffff !important;
-            border: 3px solid var(--sidebar-bg) !important; /* Thick formal border */
-            border-radius: 0 !important; /* Square academic corners */
-            box-shadow: 8px 8px 0px var(--border-color) !important; /* Decorative hard shadow */
-            padding: 2rem !important; /* Compacted padding */
-            margin-bottom: 1.5rem !important; /* Compacted margins between sections */
-            position: relative;
+        .pdf-export-wrapper .section-card {
+            width: 1000px !important; max-width: 1000px !important; background: #ffffff !important;
+            border: 3px solid var(--sidebar-bg) !important; border-radius: 0 !important; 
+            box-shadow: 8px 8px 0px var(--border-color) !important; padding: 2rem !important; 
+            margin-bottom: 1.5rem !important; position: relative;
         }
 
-        /* Decorative Inner Border for PDF */
-        .pdf-export-mode .section-card::before {
-            content: '';
-            position: absolute;
-            top: 6px; left: 6px; right: 6px; bottom: 6px;
-            border: 1.5px dashed var(--sidebar-bg) !important;
-            border-radius: 0 !important;
-            pointer-events: none;
-            opacity: 1;
+        .pdf-export-wrapper .section-card::before {
+            content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1.5px dashed var(--sidebar-bg) !important; border-radius: 0 !important; opacity: 1;
         }
 
-        /* Large Bold Headings */
-        .pdf-export-mode .heading-style {
-            font-size: 2.2rem !important;
-            font-weight: 900 !important;
-            color: var(--sidebar-bg) !important;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            line-height: 1.3 !important;
+        .pdf-export-wrapper .heading-style {
+            font-size: 2.2rem !important; font-weight: 900 !important; color: var(--sidebar-bg) !important;
+            text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.3 !important;
         }
         
-        .pdf-export-mode h1.heading-style {
-            font-size: 3rem !important;
-            border-bottom: 4px solid var(--sidebar-bg);
-            padding-bottom: 0.4em !important; /* Fixes overlaps with letters like y and ي */
-            margin-bottom: 0.5rem;
-            display: inline-block;
+        .pdf-export-wrapper h1.heading-style {
+            font-size: 3rem !important; border-bottom: 4px solid var(--sidebar-bg);
+            padding-bottom: 0.4em !important; margin-bottom: 0.5rem; display: inline-block;
         }
 
-        .pdf-export-mode .subheading-style {
-            font-size: 1.5rem !important;
-            font-weight: 800 !important;
-            color: var(--text-heading) !important;
-            margin-top: 0 !important;
+        .pdf-export-wrapper .subheading-style {
+            font-size: 1.5rem !important; font-weight: 800 !important; color: var(--text-heading) !important; margin-top: 0 !important;
         }
 
-        /* Large Bold Body Text */
-        .pdf-export-mode .text-body-style {
-            font-size: 1.2rem !important;
-            font-weight: 700 !important;
-            color: #000000 !important;
-            line-height: 1.5 !important; /* Compacted line height */
+        .pdf-export-wrapper .text-body-style {
+            font-size: 1.2rem !important; font-weight: 700 !important; color: #000000 !important; line-height: 1.5 !important; 
         }
 
-        /* Emphasized Separator for PDF */
-        .pdf-export-mode .heading-separator {
-            border-top: 4px solid var(--sidebar-bg) !important;
-            border-bottom: 1px solid var(--sidebar-bg) !important;
-            height: 8px !important;
-            margin-top: 0.5rem !important;
-            margin-bottom: 1rem !important;
-            opacity: 1;
+        .pdf-export-wrapper .heading-separator {
+            border-top: 4px solid var(--sidebar-bg) !important; border-bottom: 1px solid var(--sidebar-bg) !important;
+            height: 8px !important; margin-top: 0.5rem !important; margin-bottom: 1rem !important; opacity: 1;
         }
 
-        .pdf-export-mode .icon-style {
-            color: var(--sidebar-bg) !important;
-            font-size: 1.5rem !important;
+        .pdf-export-wrapper .icon-style {
+            color: var(--sidebar-bg) !important; font-size: 1.5rem !important;
         }
 
-        .pdf-export-mode .tag-bg-style {
-            background-color: var(--bg-gradient-start) !important;
-            color: var(--sidebar-bg) !important;
-            border: 2px solid var(--sidebar-bg) !important;
-            font-size: 1.1rem !important;
-            font-weight: 800 !important;
-            padding: 0.25rem 1rem !important;
-            border-radius: 0 !important; /* Square tags to match border */
+        .pdf-export-wrapper .tag-bg-style {
+            background-color: var(--bg-gradient-start) !important; color: var(--sidebar-bg) !important;
+            border: 2px solid var(--sidebar-bg) !important; font-size: 1.1rem !important;
+            font-weight: 800 !important; padding: 0.25rem 1rem !important; border-radius: 0 !important;
         }
 
-        /* Override Tailwind spacing for maximum compactness in PDF */
-        .pdf-export-mode .space-y-2 > :not([hidden]) ~ :not([hidden]),
-        .pdf-export-mode .space-y-3 > :not([hidden]) ~ :not([hidden]),
-        .pdf-export-mode .space-y-4 > :not([hidden]) ~ :not([hidden]),
-        .pdf-export-mode .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+        .pdf-export-wrapper .space-y-2 > :not([hidden]) ~ :not([hidden]),
+        .pdf-export-wrapper .space-y-3 > :not([hidden]) ~ :not([hidden]),
+        .pdf-export-wrapper .space-y-4 > :not([hidden]) ~ :not([hidden]),
+        .pdf-export-wrapper .space-y-6 > :not([hidden]) ~ :not([hidden]) {
             margin-top: 0.5rem !important;
         }
     </style>
 </head>
 <body data-theme="default">
 
+    <!-- Animated Footer -->
+    <footer class="animated-footer">
+        All rights are reserved to Dr. Mazen Badawy – Doctor of English Teaching & Testing
+    </footer>
+
     <!-- Control Buttons -->
-    <div class="fixed top-4 left-4 z-50 flex space-x-2">
+    <div class="fixed top-4 left-4 z-50 flex space-x-3">
         <!-- Generate PDF Button -->
-        <button id="generate-pdf-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md text-sm">
-            <i class="fas fa-id-card mr-2"></i> <span id="pdf-btn-text">Card</span>
+        <button id="generate-pdf-btn" class="custom-btn btn-green font-bold">
+            <i class="fas fa-id-card animated-icon"></i> <span id="pdf-btn-text">Card</span>
         </button>
         <!-- Show QR Code Button -->
-        <button id="show-qr-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md text-sm">
-            <i class="fas fa-qrcode mr-2"></i> <span>QR</span>
+        <button id="show-qr-btn" class="custom-btn btn-blue font-bold">
+            <i class="fas fa-qrcode animated-icon"></i> <span>QR</span>
         </button>
         <!-- Export CV Button -->
-        <button id="generate-cv-pdf-btn" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md text-sm">
-            <i class="fas fa-file-pdf mr-2"></i> <span id="cv-pdf-btn-text">Export CV</span>
+        <button id="generate-cv-pdf-btn" class="custom-btn btn-purple font-bold">
+            <i class="fas fa-file-pdf animated-icon"></i> <span id="cv-pdf-btn-text">Export CV</span>
         </button>
     </div>
 
     <!-- Language Switcher -->
     <div class="fixed top-4 right-4 z-50">
         <div class="flex justify-center space-x-2">
-            <button id="lang-en" class="lang-btn py-1 px-3 rounded-lg bg-white/30 backdrop-blur-sm text-sm font-semibold text-blue-900 border border-white/40 hover:bg-white/50 transition-all shadow-md">English</button>
-            <button id="lang-ar" class="lang-btn py-1 px-3 rounded-lg bg-white/30 backdrop-blur-sm text-sm font-semibold text-blue-900 border border-white/40 hover:bg-white/50 transition-all shadow-md">العربية</button>
+            <button id="lang-en" class="custom-btn btn-blue lang-btn">English</button>
+            <button id="lang-ar" class="custom-btn btn-blue lang-btn">العربية</button>
         </div>
     </div>
 
     <!-- Theme Selector -->
-    <div id="theme-selector" class="fixed bottom-4 right-4 z-50">
-        <button id="theme-toggle-btn" class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-700 transition-all focus:outline-none">
-            <i class="fas fa-palette text-xl"></i>
+    <div id="theme-selector" class="fixed bottom-12 right-4 z-50">
+        <button id="theme-toggle-btn" class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-700 hover:scale-110 transition-all focus:outline-none">
+            <i class="fas fa-palette text-xl animated-icon"></i>
         </button>
         <div id="theme-options" class="hidden absolute bottom-16 right-0 bg-white rounded-lg shadow-xl p-2 space-y-1 w-48 border border-gray-200">
             <!-- Theme options will be populated by JS -->
@@ -341,7 +336,7 @@
     <div class="flex flex-col md:flex-row">
         <!-- Sidebar Navigation -->
         <aside id="sidebar" class="sidebar w-full md:w-64 min-h-screen p-4 shadow-lg fixed md:sticky top-0 flex flex-col">
-            <div class="text-center mb-8">
+            <div class="text-center mb-8 mt-10 md:mt-0">
                 <img src="https://mazenegykfs.github.io/MyCv/00.png" alt="Dr. Mazen Badawy" class="sidebar-avatar-border w-24 h-24 object-cover rounded-full mx-auto mb-2 border-4">
                 <h1 id="sidebar-name" class="text-xl font-bold">Dr. Mazen Badawy</h1>
                 <p id="sidebar-title" class="text-sm sidebar-title-custom">English Language Lecturer</p>
@@ -352,7 +347,7 @@
         </aside>
 
         <!-- Main Content Area -->
-        <main id="main-content" class="main-content w-full p-4 md:p-8">
+        <main id="main-content" class="main-content w-full p-4 md:p-8 mt-12 md:mt-0">
             
             <!-- Personal Information Section -->
             <section id="personal-info" class="mb-8 section-card p-6 shadow-md">
@@ -693,7 +688,7 @@
     <!-- QR Code Modal -->
     <div id="qr-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden transition-opacity duration-300">
         <div class="relative bg-white p-4 rounded-lg shadow-xl max-w-sm w-full mx-4">
-            <button id="close-modal-btn" class="absolute -top-3 -right-3 text-white bg-red-500 rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold hover:bg-red-600 transition-colors">&times;</button>
+            <button id="close-modal-btn" class="custom-btn btn-red absolute -top-4 -right-4 rounded-full h-10 w-10 flex items-center justify-center text-xl font-bold">&times;</button>
             <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mazenegykfs.github.io'">
         </div>
     </div>
@@ -869,7 +864,7 @@
                 const cardElement = document.getElementById(cardId);
                 const originalBtnText = pdfBtnText.textContent;
                 
-                pdfBtnText.textContent = currentLang === 'ar' ? 'جاري الإنشاء...' : 'Generating...';
+                pdfBtnText.innerHTML = currentLang === 'ar' ? '⏳ جاري...' : '⏳ Generating...';
                 generatePdfBtn.disabled = true;
 
                 // Temporarily bring container into viewport to ensure images render correctly in canvas
@@ -907,20 +902,35 @@
 
             async function generateCVPDF() {
                 const currentLang = document.documentElement.lang;
-                const cvContent = document.getElementById('main-content');
+                const originalContent = document.getElementById('main-content');
                 const originalButtonText = cvPdfBtnText.textContent;
                 const pdfFileName = 'Dr-Mazen-Badawy-CV.pdf';
                 
-                cvPdfBtnText.textContent = currentLang === 'ar' ? 'جاري التصدير...' : 'Exporting...';
+                cvPdfBtnText.innerHTML = currentLang === 'ar' ? '⏳ جاري التصدير...' : '⏳ Exporting...';
                 generateCvPdfBtn.disabled = true;
 
-                // 1) Apply the robust, large, bold, decorated print styles specifically for PDF
-                body.classList.add('pdf-export-mode');
-                
-                // 2) Wait a split-second so the browser repaints the layout with the new gigantic bold fonts
-                await new Promise(resolve => setTimeout(resolve, 300));
-
                 try {
+                    // 1) Create an invisible, absolute wrapper to render the PDF layout without flashing the user's screen
+                    const pdfWrapper = document.createElement('div');
+                    pdfWrapper.className = 'pdf-export-wrapper';
+                    if(currentLang === 'ar') pdfWrapper.classList.add('ar-lang');
+                    
+                    pdfWrapper.dir = document.body.dir;
+                    pdfWrapper.style.position = 'absolute';
+                    pdfWrapper.style.left = '-9999px';
+                    pdfWrapper.style.top = '0';
+                    pdfWrapper.style.width = '1200px'; 
+                    pdfWrapper.style.backgroundColor = '#ffffff';
+
+                    // 2) Clone the content into the hidden wrapper
+                    const clonedContent = originalContent.cloneNode(true);
+                    pdfWrapper.appendChild(clonedContent);
+                    document.body.appendChild(pdfWrapper);
+
+                    // Wait a moment for fonts/styles to apply securely in the off-screen clone
+                    await new Promise(resolve => setTimeout(resolve, 300));
+
+                    // 3) Generate the PDF from the cloned, hidden wrapper
                     const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
                     const pageHeight = pdf.internal.pageSize.getHeight();
                     const pageWidth = pdf.internal.pageSize.getWidth();
@@ -928,13 +938,14 @@
                     const contentWidth = pageWidth - (margin * 2);
                     let y = margin; 
 
-                    const sectionElements = Array.from(cvContent.querySelectorAll('.section-card'));
+                    const sectionElements = Array.from(pdfWrapper.querySelectorAll('.section-card'));
 
                     for (const section of sectionElements) {
                         const canvas = await html2canvas(section, { 
                             scale: 2, 
                             useCORS: true,
-                            windowWidth: 1200 // Force canvas to simulate a wide desktop window so layout doesn't break on mobile
+                            windowWidth: 1200, 
+                            backgroundColor: '#ffffff'
                         });
                         
                         const imgData = canvas.toDataURL('image/png');
@@ -953,11 +964,13 @@
                     }
                     
                     pdf.save(pdfFileName);
+
+                    // 4) Clean up: destroy the hidden clone
+                    document.body.removeChild(pdfWrapper);
+
                 } catch (err) {
                     console.error("CV PDF generation failed:", err);
                 } finally {
-                    // 3) Remove the print styles to restore the normal web view
-                    body.classList.remove('pdf-export-mode');
                     cvPdfBtnText.textContent = originalButtonText;
                     generateCvPdfBtn.disabled = false;
                 }
