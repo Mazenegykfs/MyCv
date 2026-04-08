@@ -88,27 +88,67 @@
 
         html { 
             scroll-behavior: smooth; 
+            overflow-x: hidden;
         }
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
-            transition: background 0.5s ease;
+            background: linear-gradient(-45deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            background-size: 400% 400%;
+            animation: smooth-bg-scroll 20s ease infinite alternate;
+            transition: color 0.5s ease;
+            overflow-x: hidden;
+        }
+        
+        @keyframes smooth-bg-scroll {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
         
         .ar-lang { 
             font-family: 'Cairo', sans-serif; 
         }
         
+        /* Sidebar Styles & Transitions */
         .sidebar {
-            transition: transform 0.3s ease-in-out, background-color 0.5s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             background-color: var(--sidebar-bg);
             color: var(--sidebar-text);
+            flex-shrink: 0;
+            overflow: hidden;
         }
         
+        body.sidebar-hidden .sidebar {
+            width: 0 !important;
+            min-width: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            opacity: 0;
+            border: none;
+            margin: 0 !important;
+        }
+
+        body.sidebar-hidden .main-content {
+            width: 100% !important;
+        }
+        
+        /* Floating Profile Avatar (Visible when sidebar hidden) */
+        #floating-profile {
+            opacity: 0;
+            transform: translate(-50%, -150%);
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        body.sidebar-hidden #floating-profile {
+            opacity: 1;
+            transform: translate(-50%, 0);
+            pointer-events: auto;
+        }
+
         .sidebar-title-custom { color: var(--sidebar-text-muted); }
         .sidebar-avatar-border { border-color: var(--border-color); }
-        .main-content { transition: margin-left 0.3s ease-in-out; }
+        .main-content { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
         .sidebar-link:hover { background-color: var(--sidebar-hover-bg); }
         .sidebar-link.active { background-color: var(--sidebar-active-bg); color: var(--sidebar-active-text); transform: scale(1.05); }
         
@@ -269,8 +309,21 @@
 </head>
 <body data-theme="default">
 
+    <!-- Floating Mini Profile (Visible when Sidebar is Hidden) -->
+    <div id="floating-profile" class="fixed top-3 left-1/2 z-50 flex items-center justify-center bg-white/90 backdrop-blur-lg rounded-full shadow-lg px-5 py-2 border-2 transition-all gap-4 border-style">
+        <img src="https://mazenegykfs.github.io/MyCv/00.png" alt="Avatar" class="w-12 h-12 rounded-full border-2 object-cover border-style">
+        <div class="flex flex-col">
+            <h2 id="floating-name" class="text-sm md:text-base font-bold heading-style leading-none mb-1">Dr. Mazen Badawy</h2>
+            <p id="floating-title" class="text-xs md:text-sm font-semibold subheading-style leading-none">English Language Lecturer</p>
+        </div>
+    </div>
+
     <!-- Control Buttons -->
     <div class="fixed top-4 left-4 z-50 flex space-x-3">
+        <!-- Toggle Sidebar Button -->
+        <button id="toggle-sidebar-btn" class="custom-btn btn-blue font-bold px-3" title="Toggle Sidebar">
+            <i class="fas fa-bars animated-icon"></i>
+        </button>
         <!-- Generate PDF Button -->
         <button id="generate-pdf-btn" class="custom-btn btn-green font-bold">
             <i class="fas fa-id-card animated-icon"></i> <span id="pdf-btn-text">Card</span>
@@ -308,10 +361,10 @@
         Developed by Dr. Mazen Badawy – Doctorate of English Teaching & Testing
     </header>
 
-    <div class="flex flex-col md:flex-row">
+    <div class="flex flex-col md:flex-row w-full max-w-full">
         <!-- Sidebar Navigation -->
         <aside id="sidebar" class="sidebar w-full md:w-64 min-h-screen p-4 shadow-lg fixed md:sticky top-0 flex flex-col">
-            <div class="text-center mb-8 mt-10 md:mt-0">
+            <div class="text-center mb-8 mt-14 md:mt-0">
                 <img src="https://mazenegykfs.github.io/MyCv/00.png" alt="Dr. Mazen Badawy" class="sidebar-avatar-border w-24 h-24 object-cover rounded-full mx-auto mb-2 border-4">
                 <h1 id="sidebar-name" class="text-xl font-bold">Dr. Mazen Badawy</h1>
                 <p id="sidebar-title" class="text-sm sidebar-title-custom">English Language Lecturer</p>
@@ -322,7 +375,7 @@
         </aside>
 
         <!-- Main Content Area -->
-        <main id="main-content" class="main-content w-full p-4 md:p-8 mt-12 md:mt-0">
+        <main id="main-content" class="main-content flex-grow p-4 md:p-8 mt-12 md:mt-0 max-w-full">
             
             <!-- Personal Information Section -->
             <section id="personal-info" class="mb-8 section-card p-6 shadow-md">
@@ -678,6 +731,9 @@
             const langArBtn = document.getElementById('lang-ar');
             const sidebarName = document.getElementById('sidebar-name');
             const sidebarTitle = document.getElementById('sidebar-title');
+            const floatingName = document.getElementById('floating-name');
+            const floatingTitle = document.getElementById('floating-title');
+            const toggleSidebarBtn = document.getElementById('toggle-sidebar-btn');
             const pdfBtnText = document.getElementById('pdf-btn-text');
             const generatePdfBtn = document.getElementById('generate-pdf-btn');
             const cvPdfBtnText = document.getElementById('cv-pdf-btn-text');
@@ -723,6 +779,19 @@
                     }
                 }
             };
+
+            /* --- Sidebar Toggle Logic --- */
+            toggleSidebarBtn.addEventListener('click', () => {
+                body.classList.toggle('sidebar-hidden');
+                const icon = toggleSidebarBtn.querySelector('i');
+                if(body.classList.contains('sidebar-hidden')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-chevron-right');
+                } else {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-chevron-right');
+                }
+            });
 
             /* --- Theme Selector Logic --- */
             const themes = {
@@ -808,6 +877,9 @@
                 
                 sidebarName.textContent = translations[lang].name;
                 sidebarTitle.textContent = translations[lang].title;
+                floatingName.textContent = translations[lang].name;
+                floatingTitle.textContent = translations[lang].title;
+                
                 pdfBtnText.textContent = translations[lang].cardBtn;
                 cvPdfBtnText.textContent = translations[lang].cvPdfBtn;
                 
