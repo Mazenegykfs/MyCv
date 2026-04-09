@@ -186,8 +186,6 @@
         .text-body-style { color: var(--text-body); font-size: 1.05rem; font-weight: 500; }
         .icon-style { color: var(--icon-color); }
         .border-style { border-color: var(--border-color); }
-        .tag-bg-style { background-color: var(--tag-bg); }
-        .tag-text-style { color: var(--tag-text); }
 
 
         /* =========================================================
@@ -270,7 +268,12 @@
 
         .pdf-export-wrapper .heading-style {
             font-size: 2.2rem !important; font-weight: 900 !important; color: var(--sidebar-bg) !important;
-            text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.3 !important;
+            text-transform: uppercase; line-height: 1.3 !important;
+        }
+        
+        /* إصلاح مشكلة تقطع الحروف العربية في الـ PDF */
+        .ar-lang, .ar-lang * {
+            letter-spacing: normal !important;
         }
         
         .pdf-export-wrapper h1.heading-style {
@@ -293,12 +296,6 @@
 
         .pdf-export-wrapper .icon-style {
             color: var(--sidebar-bg) !important; font-size: 1.5rem !important;
-        }
-
-        .pdf-export-wrapper .tag-bg-style {
-            background-color: var(--bg-gradient-start) !important; color: var(--sidebar-bg) !important;
-            border: 2px solid var(--sidebar-bg) !important; font-size: 1.1rem !important;
-            font-weight: 800 !important; padding: 0.25rem 1rem !important; border-radius: 0 !important;
         }
 
         .pdf-export-wrapper .space-y-2 > :not([hidden]) ~ :not([hidden]),
@@ -498,23 +495,23 @@
                 <div class="en-text">
                     <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-users mr-3"></i>Memberships</h2>
                     <div class="heading-separator"></div>
-                    <div class="flex flex-wrap gap-4 mt-4">
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">NileTESOL</span>
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">Microsoft Educational Community</span>
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">International Literacy Association (ILA)</span>
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">English Language Teachers Contacts Scheme (ELTECS)</span>
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">Association for Middle Level Education (AMLE)</span>
-                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-body-style">
+                        <li>NileTESOL</li>
+                        <li>Microsoft Educational Community</li>
+                        <li>International Literacy Association (ILA)</li>
+                        <li>English Language Teachers Contacts Scheme (ELTECS)</li>
+                        <li>Association for Middle Level Education (AMLE)</li>
+                    </ul>
                 </div>
                 <div class="ar-text ar-lang text-right">
                     <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-users ml-3"></i>العضويات</h2>
                     <div class="heading-separator"></div>
-                    <div class="flex flex-wrap gap-4 justify-end mt-4">
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">NileTESOL</span>
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">Microsoft Educational Community</span>
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">International Literacy Association (ILA)</span>
-                        <span class="tag-bg-style tag-text-style px-4 py-2 rounded-full font-semibold shadow-sm">English Language Teachers Contacts Scheme (ELTECS)</span>
-                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-body-style">
+                        <li>NileTESOL</li>
+                        <li>Microsoft Educational Community</li>
+                        <li>International Literacy Association (ILA)</li>
+                        <li>English Language Teachers Contacts Scheme (ELTECS)</li>
+                    </ul>
                 </div>
             </section>
 
