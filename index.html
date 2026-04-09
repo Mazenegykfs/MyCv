@@ -135,7 +135,7 @@
         /* Floating Profile Avatar (Visible when sidebar hidden) */
         #floating-profile {
             opacity: 0;
-            transform: translate(-50%, -150%);
+            transform: translate(-50%, -200px);
             pointer-events: none;
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -346,7 +346,7 @@
 <body data-theme="default">
 
     <!-- Floating Mini Profile (Visible when Sidebar is Hidden) -->
-    <div id="floating-profile" class="fixed top-3 left-1/2 z-50 flex items-center justify-center bg-white/95 rounded-full shadow-lg px-5 py-2 border-2 transition-all gap-4 border-style">
+    <div id="floating-profile" class="fixed top-20 left-1/2 z-40 flex items-center justify-center bg-white/95 rounded-full shadow-lg px-5 py-2 border-2 transition-all gap-4 border-style">
         <img src="https://mazenegykfs.github.io/MyCv/00.png" alt="Avatar" class="w-12 h-12 rounded-full border-2 object-cover border-style">
         <div class="flex flex-col">
             <h2 id="floating-name" class="text-sm md:text-base font-bold heading-style leading-none mb-1">Dr. Mazen Badawy</h2>
@@ -720,7 +720,7 @@
                 <div class="flex-grow"></div>
                 <!-- QR Code Container -->
                 <div class="flex justify-start">
-                    <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-16 h-16" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=https://mazenegykfs.github.io'">
+                    <img src="https://raw.githubusercontent.com/Mazenegykfs/MyCv/refs/heads/main/qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-16 h-16" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=https://mazenegykfs.github.io'">
                 </div>
             </div>
         </div>
@@ -744,7 +744,7 @@
                 <div class="flex-grow"></div>
                 <!-- QR Code Container -->
                 <div class="flex justify-end">
-                    <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-16 h-16" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=https://mazenegykfs.github.io'">
+                    <img src="https://raw.githubusercontent.com/Mazenegykfs/MyCv/refs/heads/main/qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-16 h-16" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=https://mazenegykfs.github.io'">
                 </div>
             </div>
             <div class="w-2/5 bg-blue-800 text-white p-6 flex flex-col justify-center items-center text-center">
@@ -759,7 +759,7 @@
     <div id="qr-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden transition-opacity duration-300">
         <div class="relative bg-white p-4 rounded-lg shadow-xl max-w-sm w-full mx-4">
             <button id="close-modal-btn" class="custom-btn btn-red absolute -top-4 -right-4 rounded-full h-10 w-10 flex items-center justify-center text-xl font-bold">&times;</button>
-            <img src="qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mazenegykfs.github.io'">
+            <img src="https://raw.githubusercontent.com/Mazenegykfs/MyCv/refs/heads/main/qrcode_mazenegykfs.github.io.png" alt="QR Code" class="w-full h-auto" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mazenegykfs.github.io'">
         </div>
     </div>
 
