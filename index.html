@@ -281,6 +281,43 @@
             padding-bottom: 0.4em !important; margin-bottom: 0.5rem; display: inline-block;
         }
 
+        /* Avatar styling exclusively for PDF Export */
+        .pdf-export-wrapper .print-avatar {
+            display: block !important;
+            width: 140px !important;
+            height: 140px !important;
+            border-radius: 50% !important;
+            border: 4px solid var(--sidebar-bg) !important;
+            object-fit: cover !important;
+            box-shadow: 4px 4px 0px var(--border-color) !important;
+            flex-shrink: 0 !important;
+        }
+
+        .pdf-export-wrapper .pdf-header {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 2.5rem !important;
+            text-align: left !important;
+        }
+
+        .pdf-export-wrapper.ar-lang .pdf-header {
+            flex-direction: row-reverse !important;
+            justify-content: flex-end !important;
+            text-align: right !important;
+        }
+
+        .pdf-export-wrapper .pdf-header-text {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+        }
+
+        .pdf-export-wrapper.ar-lang .pdf-header-text {
+            align-items: flex-end !important;
+        }
+
         .pdf-export-wrapper .subheading-style {
             font-size: 1.5rem !important; font-weight: 800 !important; color: var(--text-heading) !important; margin-top: 0 !important;
         }
@@ -379,9 +416,12 @@
             <!-- Personal Information Section -->
             <section id="personal-info" class="mb-8 section-card p-6 shadow-md">
                 <div class="en-text">
-                    <div class="text-center mb-6">
-                        <h1 class="text-4xl font-bold heading-style">Dr. Mazen Badawy</h1>
-                        <p class="text-xl subheading-style mt-2">English Language Lecturer</p>
+                    <div class="text-center mb-6 pdf-header">
+                        <img src="https://mazenegykfs.github.io/MyCv/00.png" alt="Dr. Mazen Badawy" class="hidden print-avatar">
+                        <div class="pdf-header-text">
+                            <h1 class="text-4xl font-bold heading-style">Dr. Mazen Badawy</h1>
+                            <p class="text-xl subheading-style mt-2">English Language Lecturer</p>
+                        </div>
                     </div>
                     <h2 class="text-3xl font-bold heading-style flex items-center"><i class="fas fa-user-circle mr-3"></i>Personal Information</h2>
                     <div class="heading-separator"></div>
@@ -396,9 +436,12 @@
                     </ul>
                 </div>
                 <div class="ar-text ar-lang">
-                    <div class="text-center mb-6">
-                        <h1 class="text-4xl font-bold heading-style">د/ مازن بدوي</h1>
-                        <p class="text-xl subheading-style mt-2">دكتور/ محاضر لغة انجليزية</p>
+                    <div class="text-center mb-6 pdf-header">
+                        <img src="https://mazenegykfs.github.io/MyCv/00.png" alt="د/ مازن بدوي" class="hidden print-avatar">
+                        <div class="pdf-header-text">
+                            <h1 class="text-4xl font-bold heading-style">د/ مازن بدوي</h1>
+                            <p class="text-xl subheading-style mt-2">دكتور/ محاضر لغة انجليزية</p>
+                        </div>
                     </div>
                     <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-user-circle ml-3"></i>المعلومات الشخصية</h2>
                     <div class="heading-separator"></div>
