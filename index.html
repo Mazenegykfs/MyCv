@@ -160,9 +160,20 @@
             100% { transform: translateX(-50%); }
         }
         
-        .ar-lang, .ar-lang * { 
+        .ar-lang { 
+            font-family: 'Cairo', sans-serif; 
+        }
+        
+        /* Fix Arabic Font and PDF Spacing without corrupting FontAwesome Icons */
+        .ar-lang *:not(.fas):not(.fab):not(.far) { 
             font-family: 'Cairo', sans-serif; 
             letter-spacing: 0px !important; /* Vital for Arabic PDF rendering */
+        }
+        
+        /* Explicitly protect FontAwesome icons */
+        i.fas, i.fab, i.far {
+            font-family: "Font Awesome 6 Free" !important;
+            letter-spacing: normal !important;
         }
         
         /* Sidebar Styles & Transitions */
@@ -236,6 +247,15 @@
             background-color: var(--header-bg); color: var(--header-text);
             padding: 0.5rem; text-align: center; font-size: 0.875rem; font-weight: bold;
             transition: background-color 0.5s ease;
+        }
+        
+        #business-card-container { 
+            position: absolute !important; 
+            left: -9999px !important; 
+            top: -9999px !important; 
+            opacity: 0 !important; 
+            pointer-events: none !important; 
+            z-index: -9999 !important; 
         }
         
         .heading-style { color: var(--text-heading); }
@@ -550,7 +570,7 @@
                 <div class="ar-text ar-lang text-right">
                     <h2 class="text-3xl font-bold heading-style flex items-center justify-start"><i class="fas fa-book-open ml-3"></i>الأبحاث المنشورة</h2>
                     <div class="heading-separator"></div>
-                    <ul class="list-disc list-inside space-y-3 text-body-style">
+                    <ul class="list-disc list-inside space-y-3 text-body-style text-left" dir="ltr" style="font-family: 'Poppins', sans-serif !important;">
                         <li>El-Banna, A. I., Naeem, M. A., & <strong>Badawy, M.</strong> (2025). A Controversial Issue: Who Is More Entitled to Teach Language Skills and ESP Courses? <i>International Journal of Learning Management Systems</i>, 13(4), 63–73.</li>
                         <li>El-Banna, N. A. I., & <strong>Badawy, M. F.</strong> (2024). Using a Technology-Enhanced Flipped Classroom Model to Develop EFL Engineering Students’ Punctuation Marks. <i>Journal of Educational and Social Studies - Faculty of Education, Helwan University</i>, 30(1).</li>
                         <li><strong>Badawy, M. F.</strong>, & El-Banna, N. (2024). Evaluation Practices Incorporated in 2nd Year Primary English Teacher’s Guide: A Content Analysis.  <i>Journal of Faculty of Education, Kafrelshiekh University.</i> 4(1).</li>
@@ -990,19 +1010,8 @@
                 const cardElement = document.getElementById(cardId);
                 const originalBtnText = pdfBtnText.textContent;
                 
-                pdfBtnText.innerHTML = currentLang === 'ar' ? '⏳ جاري...' : '⏳ Generating...';
+                pdfBtnText.innerHTML = currentLang === 'ar' ? 'جاري...' : 'Generating...';
                 generatePdfBtn.disabled = true;
-
-                const container = document.getElementById('business-card-container');
-                const originalLeft = container.style.left;
-                
-                // Fixed: Render inside viewport to prevent font breaks, but completely invisible
-                container.style.position = 'absolute';
-                container.style.top = '0';
-                container.style.left = '0';
-                container.style.zIndex = '-9999';
-                container.style.opacity = '0.01';
-                container.style.pointerEvents = 'none';
 
                 html2canvas(cardElement, { scale: 3, useCORS: true }).then(canvas => {
                     const imgData = canvas.toDataURL('image/png');
@@ -1010,16 +1019,10 @@
                     pdf.addImage(imgData, 'PNG', 0, 0, 525, 300);
                     pdf.save('Dr-Mazen-Badawy-Business-Card.pdf');
                     
-                    // Restore original state
-                    container.style.left = '-9999px';
-                    container.style.opacity = '1';
-                    
                     pdfBtnText.textContent = originalBtnText;
                     generatePdfBtn.disabled = false;
                 }).catch(err => {
                     console.error("Card PDF generation failed:", err);
-                    container.style.left = '-9999px';
-                    container.style.opacity = '1';
                     pdfBtnText.textContent = originalBtnText;
                     generatePdfBtn.disabled = false;
                 });
@@ -1031,7 +1034,7 @@
                 const originalButtonText = cvPdfBtnText.textContent;
                 const pdfFileName = 'Dr-Mazen-Badawy-CV.pdf';
                 
-                cvPdfBtnText.innerHTML = currentLang === 'ar' ? '⏳ جاري التصدير...' : '⏳ Exporting...';
+                cvPdfBtnText.innerHTML = currentLang === 'ar' ? 'جاري التصدير...' : 'Exporting...';
                 generateCvPdfBtn.disabled = true;
 
                 try {
